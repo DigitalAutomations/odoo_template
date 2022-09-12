@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="draft_stage" model="job.stage">
+        <field name="name">Draft</field>
+        <field name="sequence">0</field>
+    </record>
+    <record id="in_progress_stage" model="job.stage">
+        <field name="name">Recruitment In-Progress</field>
+        <field name="state">recruit</field>
+        <field name="sequence">1</field>
+    </record>
+    <record id="hold_stage" model="job.stage">
+        <field name="name">On Hold</field>
+        <field name="sequence">2</field>
+    </record>
+    <record id="done_stage" model="job.stage">
+        <field name="name">Done</field>
+        <field name="state">close</field>
+        <field name="sequence">3</field>
+    </record>
+    <record id="cancel_stage" model="job.stage">
+        <field name="name">Cancel</field>
+        <field name="sequence">4</field>
+    </record>
+</odoo>

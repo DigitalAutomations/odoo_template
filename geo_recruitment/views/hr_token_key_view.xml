@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+
+
+        <record id="hr_job_token_view_list_view" model="ir.ui.view">
+            <field name="name">Token Key</field>
+            <field name="model">linkedin.configuration</field>
+            <field name="arch" type="xml">
+                <tree string="Token Key Details">
+                    <field name="token_key"/>
+                    <field name="active"/>
+                </tree>
+            </field>
+        </record>
+
+<!--        <record id="hr_job_token_view_form" model="ir.ui.view">-->
+<!--            <field name="name">linkedin.configuration.token.view.form</field>-->
+<!--            <field name="model">linkedin.configuration</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="Token Key Details">-->
+<!--                    <sheet>-->
+<!--                        <field name="token_key"/>-->
+<!--                    </sheet>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+        <record id="hr_token_key_action" model="ir.actions.act_window">
+            <field name="name">Token</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">linkedin.configuration</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a New Token Key
+                </p>
+            </field>
+
+        </record>
+
+        <menuitem
+                id="menu_hr_token_root"
+                action="hr_token_key_action"
+                name="Token key"
+                parent="hr_recruitment.menu_hr_recruitment_configuration"
+                sequence="0"/>
+    </data>
+</odoo>

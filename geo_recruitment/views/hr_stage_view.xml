@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_hr_recruitment_stage_inherit" model="ir.ui.view">
+        <field name="name">hr.recruitment.stage.inherit</field>
+        <field name="model">hr.recruitment.stage</field>
+        <field name="inherit_id" ref="hr_recruitment.hr_recruitment_stage_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//form//sheet//group//group[@name='stage_details']//field[@name='job_ids']" position="after">
+                <field name="stage_type"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

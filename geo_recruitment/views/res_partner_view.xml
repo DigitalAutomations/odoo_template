@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="res_partner_form_view_inherit" model="ir.ui.view">
+        <field name="name">Contacts</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <field name="category_id" position="after">
+                <xpath expr="//form//sheet//notebook//page[@name='sales_purchases']//group//group[@name='sale']//field[@name='user_id']" position="move"/>
+            </field>
+        </field>
+    </record>
+</odoo>

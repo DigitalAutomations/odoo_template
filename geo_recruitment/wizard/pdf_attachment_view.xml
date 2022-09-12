@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="doc_attachment_wizard_view">
+            <field name="name">doc.attachment.form</field>
+            <field name="model">applicant.attachment</field>
+            <field name="groups_id" eval="[(4,ref('base.group_user'))]"/>
+            <field name="arch" type="xml">
+                <form>
+                    <group string="Please Attach Resume!">
+                        <group>
+                            <field name="doc_type"/>
+                            <field name="job_ids" widget="many2many_tags" options="{'no_open': True, 'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="attachment_ids" widget="many2many_binary" string="Attach a file" nolabel="1" colspan="2"/>
+                        </group>
+                    </group>
+                    <footer>
+                        <button string="Upload" name="action_confirm" type="object" class="btn-primary o_mail_send" />
+                        <button string="Cancel" class="btn-secondary" special="cancel" />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_attachment_wizard" model="ir.actions.act_window">
+            <field name="name">Checklist Attachment</field>
+            <field name="res_model">applicant.attachment</field>
+<!--            <field name="binding_model_id" ref="gts_crm_payment_milstone.payment_confirm_wizard_view"/>-->
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>
