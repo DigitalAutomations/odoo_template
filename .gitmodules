@@ -77,3 +77,8 @@
 	path = OCA/purchase-workflow
 	url = git@github.com:OCA/purchase-workflow.git
 	branch = 14.0
+
+[submodule "OCA/purchase-reporting"]
+	path = OCA/purchase-reporting
+	url = git@github.com:OCA/purchase-reporting.git
+	branch = 14.0
