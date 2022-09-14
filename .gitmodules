@@ -62,3 +62,8 @@
 	path = OCA/timesheet
 	url = git@github.com:OCA/timesheet.git
 	branch = 14.0
+
+[submodule "OCA/sale-workflow"]
+	path = OCA/sale-workflow
+	url = git@github.com:OCA/sale-workflow.git
+	branch = 14.0
