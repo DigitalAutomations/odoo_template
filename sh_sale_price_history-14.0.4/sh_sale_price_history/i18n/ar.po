@@ -1,0 +1,208 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sh_sale_price_history
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.1alpha1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-30 06:05+0000\n"
+"PO-Revision-Date: 2020-09-30 06:05+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields.selection,name:sh_sale_price_history.selection__res_company__record_based_on__both
+msgid "Both"
+msgstr "على حد سواء"
+
+#. module: sh_sale_price_history
+#: model:ir.model,name:sh_sale_price_history.model_res_company
+msgid "Companies"
+msgstr "الشركات"
+
+#. module: sh_sale_price_history
+#: model:ir.model,name:sh_sale_price_history.model_res_config_settings
+msgid "Config Settings"
+msgstr "إعدادات التكوين"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_sale_price_history__create_uid
+msgid "Created by"
+msgstr "انشأ من قبل"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_sale_price_history__create_date
+msgid "Created on"
+msgstr "تم إنشاؤها على"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,help:sh_sale_price_history.field_sale_price_history__order_date
+msgid ""
+"Creation date of draft/sent orders,\n"
+"Confirmation date of confirmed orders."
+msgstr ""
+"تاريخ إنشاء المسودة / الطلبات المرسلة ، \ n"
+"تاريخ تأكيد الطلبات المؤكدة".
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_sale_price_history__currency_id
+msgid "Currency Id"
+msgstr "معرف العملة"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_sale_price_history__partner_id
+#: model_terms:ir.ui.view,arch_db:sh_sale_price_history.sh_customer_product_sales_price_history_form_view_inherit
+msgid "Customer"
+msgstr "الزبون"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_product_product__display_name
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_product_template__display_name
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_res_company__display_name
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_res_config_settings__display_name
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_sale_price_history__display_name
+msgid "Display Name"
+msgstr "اسم العرض"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields.selection,name:sh_sale_price_history.selection__res_company__record_based_on__done
+msgid "Done (Locked)"
+msgstr "تم (مغلق)"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_product_product__id
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_product_template__id
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_res_company__id
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_res_config_settings__id
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_sale_price_history__id
+msgid "ID"
+msgstr "هوية شخصية"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_res_company__item_limit
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_res_config_settings__item_limit
+msgid "Item Limit"
+msgstr "حد البند"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_product_product____last_update
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_product_template____last_update
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_res_company____last_update
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_res_config_settings____last_update
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_sale_price_history____last_update
+msgid "Last Modified on"
+msgstr "تاريخ آخر تعديل"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_sale_price_history__write_uid
+msgid "Last Updated by"
+msgstr "آخر تحديث بواسطة"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_sale_price_history__write_date
+msgid "Last Updated on"
+msgstr "آخر تحديث في"
+
+#. module: sh_sale_price_history
+#: model_terms:ir.ui.view,arch_db:sh_sale_price_history.sh_sale_price_history_res_config_settings
+msgid "Number of items display in product sale price history"
+msgstr "عدد العناصر المعروضة في سجل أسعار بيع المنتج"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields.selection,name:sh_sale_price_history.selection__res_company__record_based_on__sale
+msgid "Order Confirm"
+msgstr "اجل تأكيد"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_sale_price_history__order_date
+msgid "Order Date"
+msgstr "تاريخ الطلب"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_res_company__record_based_on
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_res_config_settings__record_based_on
+msgid "Price History Based On"
+msgstr "تاريخ السعر على أساس"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_product_product__price_history_line_ids
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_product_template__price_history_line_ids
+msgid "Price History Lines"
+msgstr "خطوط تاريخ الأسعار"
+
+#. module: sh_sale_price_history
+#: model_terms:ir.ui.view,arch_db:sh_sale_price_history.sh_customer_product_sales_price_history_form_view_inherit
+msgid "Price Histroy"
+msgstr "تاريخ الأسعار"
+
+#. module: sh_sale_price_history
+#: model:ir.model,name:sh_sale_price_history.model_product_product
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_sale_price_history__variant_id
+msgid "Product"
+msgstr "المنتج"
+
+#. module: sh_sale_price_history
+#: model:ir.model,name:sh_sale_price_history.model_product_template
+msgid "Product Template"
+msgstr "نموذج المنتج"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_sale_price_history__quantity
+msgid "Quantity"
+msgstr "كمية"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_sale_price_history__sale_order_id
+msgid "Sale Order"
+msgstr "أمر بيع"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_sale_price_history__name
+msgid "Sale Order Line"
+msgstr "سطر أوامر البيع"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_sale_price_history__sale_price
+msgid "Sale Price"
+msgstr "سعر البيع"
+
+#. module: sh_sale_price_history
+#: model:ir.model,name:sh_sale_price_history.model_sale_price_history
+msgid "Sale Price History"
+msgstr "تاريخ سعر البيع"
+
+#. module: sh_sale_price_history
+#: model_terms:ir.ui.view,arch_db:sh_sale_price_history.sh_customer_product_sales_price_history_form_view_inherit
+msgid "Sale Price History Line"
+msgstr "خط تاريخ سعر البيع"
+
+#. module: sh_sale_price_history
+#: model_terms:ir.ui.view,arch_db:sh_sale_price_history.sh_sale_price_history_res_config_settings
+msgid "Sale order product price history based on"
+msgstr "تاريخ سعر منتج أمر البيع على أساس"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_sale_price_history__sales_person_id
+msgid "Sales Person"
+msgstr "مندوب مبيعات"
+
+#. module: sh_sale_price_history
+#: model_terms:ir.ui.view,arch_db:sh_sale_price_history.sh_customer_product_sales_price_history_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_sale_price_history.sh_sale_price_history_res_config_settings
+msgid "Sales Price History"
+msgstr "تاريخ سعر المبيعات"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_sale_price_history__tmpl_id
+msgid "Template Id"
+msgstr "معرف النموذج"
+
+#. module: sh_sale_price_history
+#: model:ir.model.fields,field_description:sh_sale_price_history.field_sale_price_history__total_price
+msgid "Total"
+msgstr "مجموع"

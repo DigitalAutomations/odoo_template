@@ -1,0 +1,17 @@
+/* 23-10-2020 */
+
+.o_form_view .o_list_view .table-responsive {
+    max-height: 250px;
+    overflow-y: scroll;
+    overflow-x: initial;
+    display: inline-block;
+}
+
+.o_form_view .o_list_view .o_list_table thead th {
+    position: sticky !important;
+    top: 0;
+    z-index: 0;
+}
+.o_form_view .o_list_view .o_list_table thead tr:nth-child(1) th {
+    background-color: $o-list-footer-bg-color;
+}

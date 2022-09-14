@@ -1,0 +1,207 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sh_purchase_price_history
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.1alpha1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-30 06:59+0000\n"
+"PO-Revision-Date: 2020-09-30 06:59+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields.selection,name:sh_purchase_price_history.selection__res_company__record_based_on_purchase__both
+msgid "Both"
+msgstr "Tous les deux"
+
+#. module: sh_purchase_price_history
+#: model:ir.model,name:sh_purchase_price_history.model_res_company
+msgid "Companies"
+msgstr "Entreprises"
+
+#. module: sh_purchase_price_history
+#: model:ir.model,name:sh_purchase_price_history.model_res_config_settings
+msgid "Config Settings"
+msgstr "Paramètres de configuration"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_purchase_price_history__create_uid
+msgid "Created by"
+msgstr "Créé par"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_purchase_price_history__create_date
+msgid "Created on"
+msgstr "Créé sur"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_purchase_price_history__currency_id
+msgid "Currency Id"
+msgstr "Identifiant de devise"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,help:sh_purchase_price_history.field_purchase_price_history__order_date
+msgid ""
+"Depicts the date where the Quotation should be validated and converted into "
+"a purchase order."
+msgstr ""
+"Indique la date à laquelle le devis doit être validé et converti en"
+"un bon de commande."
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_product_product__display_name
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_product_template__display_name
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_purchase_price_history__display_name
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_res_company__display_name
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_res_config_settings__display_name
+msgid "Display Name"
+msgstr "Afficher un nom"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields.selection,name:sh_purchase_price_history.selection__res_company__record_based_on_purchase__done
+msgid "Done (Locked)"
+msgstr "Terminé (verrouillé)"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_product_product__id
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_product_template__id
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_purchase_price_history__id
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_res_company__id
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_res_config_settings__id
+msgid "ID"
+msgstr "ID"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_res_config_settings__item_limit_purchase
+msgid "Item Limit  (Purchase)"
+msgstr "Limite d'articles (achat)"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_res_company__item_limit_purchase
+msgid "Item Limit (Purchase)"
+msgstr "Limite d'articles (achat)"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_product_product____last_update
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_product_template____last_update
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_purchase_price_history____last_update
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_res_company____last_update
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_res_config_settings____last_update
+msgid "Last Modified on"
+msgstr "Dernière modification le"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_purchase_price_history__write_uid
+msgid "Last Updated by"
+msgstr "Dernière mise à jour par"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_purchase_price_history__write_date
+msgid "Last Updated on"
+msgstr "Dernière mise à jour le"
+
+#. module: sh_purchase_price_history
+#: model_terms:ir.ui.view,arch_db:sh_purchase_price_history.sh_purchase_price_history_res_config_settings
+msgid "Number of items display in product purchase price history"
+msgstr "Nombre d'articles affichés dans l'historique des prix d'achat des produits"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields.selection,name:sh_purchase_price_history.selection__res_company__record_based_on_purchase__purchase
+msgid "Order Confirm"
+msgstr "Confirmer la commande"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_purchase_price_history__order_date
+msgid "Order Date"
+msgstr "Date de commande"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_res_config_settings__record_based_on_purchase
+msgid "Price History Based On  (Purchase)"
+msgstr "Historique des prix basé sur (achat)"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_res_company__record_based_on_purchase
+msgid "Price History Based On (Purchase)"
+msgstr "Historique des prix basé sur (achat)"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_product_product__purchase_price_history_line_ids
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_product_template__purchase_price_history_line_ids
+msgid "Price History Lines"
+msgstr "Lignes d'historique de prix"
+
+#. module: sh_purchase_price_history
+#: model_terms:ir.ui.view,arch_db:sh_purchase_price_history.sh_customer_product_purchase_price_history_form_view_inherit
+msgid "Price History"
+msgstr "Historique des prix"
+
+#. module: sh_purchase_price_history
+#: model:ir.model,name:sh_purchase_price_history.model_product_product
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_purchase_price_history__variant_id
+msgid "Product"
+msgstr "Produit"
+
+#. module: sh_purchase_price_history
+#: model:ir.model,name:sh_purchase_price_history.model_product_template
+msgid "Product Template"
+msgstr "Modèle de produit"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_purchase_price_history__purchase_order_id
+msgid "Purchase Order"
+msgstr "Bon de commande"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_purchase_price_history__name
+msgid "Purchase Order Line"
+msgstr "Ligne de commande d'achat"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_purchase_price_history__purchase_price
+msgid "Purchase Price"
+msgstr "Prix ​​d'achat"
+
+#. module: sh_purchase_price_history
+#: model:ir.model,name:sh_purchase_price_history.model_purchase_price_history
+#: model_terms:ir.ui.view,arch_db:sh_purchase_price_history.sh_customer_product_purchase_price_history_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_purchase_price_history.sh_purchase_price_history_res_config_settings
+msgid "Purchase Price History"
+msgstr "Historique des prix d'achat"
+
+#. module: sh_purchase_price_history
+#: model_terms:ir.ui.view,arch_db:sh_purchase_price_history.sh_customer_product_purchase_price_history_form_view_inherit
+msgid "Purchase Price History Line"
+msgstr "Ligne d'historique des prix d'achat"
+
+#. module: sh_purchase_price_history
+#: model_terms:ir.ui.view,arch_db:sh_purchase_price_history.sh_purchase_price_history_res_config_settings
+msgid "Purchase order product price history based on"
+msgstr "Historique des prix du produit de la commande d'achat basé sur"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_purchase_price_history__quantity
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_purchase_price_history__partner_id
+#: model_terms:ir.ui.view,arch_db:sh_purchase_price_history.sh_customer_product_purchase_price_history_form_view_inherit
+msgid "Supplier"
+msgstr "Fournisseuse"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,field_description:sh_purchase_price_history.field_purchase_price_history__total_price
+msgid "Total"
+msgstr "Totale"
+
+#. module: sh_purchase_price_history
+#: model:ir.model.fields,help:sh_purchase_price_history.field_purchase_price_history__partner_id
+msgid "You can find a vendor by its Name, TIN, Email or Internal Reference."
+msgstr "Vous pouvez trouver un fournisseur par son nom, son TIN, son adresse e-mail ou sa référence interne."
