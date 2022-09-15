@@ -42,3 +42,48 @@
 	path = OCA/mis-builder
 	url = git@github.com:OCA/mis-builder.git
 	branch = 14.0
+
+[submodule "OCA/project-reporting"]
+	path = OCA/project-reporting
+	url = git@github.com:OCA/project-reporting.git
+	branch = 14.0
+
+[submodule "OCA/project-agile"]
+	path = OCA/project-agile
+	url = git@github.com:OCA/project-agile.git
+	branch = 14.0
+
+[submodule "OCA/project"]
+	path = OCA/project
+	url = git@github.com:OCA/project.git
+	branch = 14.0
+
+[submodule "OCA/timesheet"]
+	path = OCA/timesheet
+	url = git@github.com:OCA/timesheet.git
+	branch = 14.0
+
+[submodule "OCA/sale-workflow"]
+	path = OCA/sale-workflow
+	url = git@github.com:OCA/sale-workflow.git
+	branch = 14.0
+
+[submodule "OCA/sale-reporting"]
+	path = OCA/sale-reporting
+	url = git@github.com:OCA/sale-reporting.git
+	branch = 14.0
+
+[submodule "OCA/purchase-workflow"]
+	path = OCA/purchase-workflow
+	url = git@github.com:OCA/purchase-workflow.git
+	branch = 14.0
+
+[submodule "OCA/purchase-reporting"]
+	path = OCA/purchase-reporting
+	url = git@github.com:OCA/purchase-reporting.git
+	branch = 14.0
+
+[submodule "OCA/product-configurator"]
+	path = OCA/product-configurator
+	url = git@github.com:OCA/product-configurator.git
+	branch = 14.0

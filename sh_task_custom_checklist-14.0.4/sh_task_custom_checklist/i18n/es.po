@@ -1,0 +1,139 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* sh_task_custom_checklist
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 14.1alpha1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-10-16 10:19+0000\n"
+"PO-Revision-Date: 2020-10-16 10:19+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: sh_task_custom_checklist
+#: model_terms:ir.ui.view,arch_db:sh_task_custom_checklist.sh_project_task_custom_checklist_form_view_inherit
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: sh_task_custom_checklist
+#: model:ir.model.fields.selection,name:sh_task_custom_checklist.selection__task_custom_checklist_line__state__cancelled
+msgid "Cancelled"
+msgstr "Cancelada"
+
+#. module: sh_task_custom_checklist
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_project_task__custom_checklist_ids
+#: model_terms:ir.ui.view,arch_db:sh_task_custom_checklist.sh_project_task_custom_checklist_form_view_inherit
+#: model_terms:ir.ui.view,arch_db:sh_task_custom_checklist.sh_project_task_custom_checklist_kanban_view_inherit
+msgid "Checklist"
+msgstr "Lista de Verificación"
+
+#. module: sh_task_custom_checklist
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_project_task__custom_checklist
+#: model_terms:ir.ui.view,arch_db:sh_task_custom_checklist.sh_project_task_custom_checklist_form_view_inherit
+msgid "Checklist Completed"
+msgstr "Lista de verificación completada"
+
+#. module: sh_task_custom_checklist
+#: model_terms:ir.ui.view,arch_db:sh_task_custom_checklist.sh_project_task_custom_checklist_form_view_inherit
+msgid "Complete"
+msgstr "Completa"
+
+#. module: sh_task_custom_checklist
+#: model:ir.model.fields.selection,name:sh_task_custom_checklist.selection__task_custom_checklist_line__state__completed
+msgid "Completed"
+msgstr "Terminada"
+
+#. module: sh_task_custom_checklist
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist__create_uid
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist_line__create_uid
+msgid "Created by"
+msgstr "Creado por"
+
+#. module: sh_task_custom_checklist
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist__create_date
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist_line__create_date
+msgid "Created on"
+msgstr "Creado en"
+
+#. module: sh_task_custom_checklist
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist_line__updated_date
+msgid "Date"
+msgstr "Fecha"
+
+#. module: sh_task_custom_checklist
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist__description
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist_line__description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: sh_task_custom_checklist
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_project_task__display_name
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist__display_name
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist_line__display_name
+msgid "Display Name"
+msgstr "Nombre para mostrar"
+
+#. module: sh_task_custom_checklist
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_project_task__id
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist__id
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist_line__id
+msgid "ID"
+msgstr "CARNÉ DE IDENTIDAD"
+
+#. module: sh_task_custom_checklist
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_project_task____last_update
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist____last_update
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist_line____last_update
+msgid "Last Modified on"
+msgstr "Última modificación el"
+
+#. module: sh_task_custom_checklist
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist__write_uid
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist_line__write_uid
+msgid "Last Updated by"
+msgstr "Última actualización por"
+
+#. module: sh_task_custom_checklist
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist__write_date
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist_line__write_date
+msgid "Last Updated on"
+msgstr "Ultima actualización en"
+
+#. module: sh_task_custom_checklist
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist__name
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist_line__name
+msgid "Name"
+msgstr "Nombre"
+
+#. module: sh_task_custom_checklist
+#: model:ir.model.fields.selection,name:sh_task_custom_checklist.selection__task_custom_checklist_line__state__new
+msgid "New"
+msgstr "Nueva"
+
+#. module: sh_task_custom_checklist
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist_line__state
+msgid "State"
+msgstr "Estado"
+
+#. module: sh_task_custom_checklist
+#: model:ir.model,name:sh_task_custom_checklist.model_project_task
+#: model:ir.model.fields,field_description:sh_task_custom_checklist.field_task_custom_checklist_line__task_id
+msgid "Task"
+msgstr "Tarea"
+
+#. module: sh_task_custom_checklist
+#: model:ir.actions.act_window,name:sh_task_custom_checklist.action_menu_task_custom_checklist
+#: model:ir.model,name:sh_task_custom_checklist.model_task_custom_checklist
+#: model:ir.ui.menu,name:sh_task_custom_checklist.menu_task_custom_checklist
+msgid "Task Custom Checklist"
+msgstr "Lista de verificación personalizada de tareas"
+
+#. module: sh_task_custom_checklist
+#: model:ir.model,name:sh_task_custom_checklist.model_task_custom_checklist_line
+msgid "Task Custom Checklist Line"
+msgstr "Línea de lista de verificación personalizada de tareas"

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="sh_customer_product_sales_price_history_form_view_inherit" model="ir.ui.view">
+        <field name="name">sale.customer.product.price.history.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view" />
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Sales Price History">
+                    <field name="price_history_line_ids">
+                        <tree editable="bottom">
+                            <field name="partner_id" string="Customer" />
+                            <field name="sales_person_id" />
+                            <field name="sale_order_id" />
+                            <field name="order_date" />
+                            <field name="variant_id" />
+                            <field name="quantity" />
+                            <field name="sale_price" />
+                            <field name="total_price" />
+                            <field name="state" widget="badge" decoration-success="state == 'sale'" decoration-info="state == 'done'"/>
+                        </tree>
+                        <form>
+                        	<header>
+								<field name="state" widget="statusbar"/>
+							</header>
+                            <sheet>
+                                <group>
+                                    <group>
+                                        <field name="partner_id" string="Customer" />
+                                        <field name="sale_order_id" />
+                                        <field name="variant_id" />
+                                        <field name="sale_price" />
+                                    </group>
+                                    <group>
+                                        <field name="sales_person_id" />
+                                        <field name="order_date" />
+                                        <field name="quantity" />
+                                        <field name="total_price" />
+                                    </group>
+                                </group>
+                            </sheet>
+                        </form>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
