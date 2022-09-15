@@ -82,3 +82,8 @@
 	path = OCA/purchase-reporting
 	url = git@github.com:OCA/purchase-reporting.git
 	branch = 14.0
+
+[submodule "OCA/product-configurator"]
+	path = OCA/product-configurator
+	url = git@github.com:OCA/product-configurator.git
+	branch = 14.0
