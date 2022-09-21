@@ -92,3 +92,8 @@
 	path = OCA/web
 	url = git@github.com:OCA/web.git
 	branch = 14.0
+
+[submodule "ilyasProgrammer/sale-workflow/sale_product_advance_payment"]
+	path = ilyasProgrammer/sale-workflow/sale_product_advance_payment
+	url = git@github.com:ilyasProgrammer/sale-workflow.git
+	branch = 14.0-sale_product_advance_payment
