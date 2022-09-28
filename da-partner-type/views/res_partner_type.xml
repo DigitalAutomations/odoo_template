@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- TREE VIEW -->
+    <record id="res_partner_type_tree" model="ir.ui.view">
+        <field name="name">res.partner.type.tree</field>
+        <field name="model">res.partner.type</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="label"/>
+                <field name="description"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- FORM -->
+    <record id="res_partner_type_form" model="ir.ui.view">
+        <field name="name">res.partner.type.form</field>
+        <field name="model">res.partner.type</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="label"/>
+                        </group>
+                        <group>
+                            <field name="description"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="res_partner_type_act_window">
+        <field name="name">Tipologie di Partner</field>
+        <field name="res_model">res.partner.type</field>
+        <field name="view_mode">tree,form</field>
+        <field name="domain">[]</field>
+        <field name="context">{}</field>
+    </record>
+
+    <menuitem
+        action="res_partner_type_act_window"
+        id="menu_partner_type"
+        name="Tipologie di Partner"
+        parent="contacts.res_partner_menu_config"
+    />
+
+</odoo>
