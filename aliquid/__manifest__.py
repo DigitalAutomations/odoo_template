@@ -6,7 +6,7 @@
     'summary': 'Personalizzazione Aliquid',
     'author': 'Digital Automations',
     'website': 'www.digitalautomations.it',
-    'support': 's',
+    'support': 'tech@digitalautomations.it',
     'depends': [
         'base', 'account', 'sale', 'purchase', 'product', 'sale_management', 'hr' ,'sale_subscription', 'sale_subscription_dashboard','hr_timesheet', 'sale_timesheet'
     ],
