@@ -6,7 +6,7 @@ from . import res_partner
 #from . import product_template
 #from . import sale_order
 from . import crm_lead
-#from . import account_payment_term
+from . import account_payment_term
 #from . import project_project
 #from . import helpdesk_ticket
 #from . import report_ticket_portal

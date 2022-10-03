@@ -6,12 +6,12 @@ class ResPartnerInh(models.Model):
     _inherit = 'res.partner'
 
     fax = fields.Char()
-    avoid_pa_checks = fields.Boolean(help="Se abilitato, salta i controlli legati alle P.A.",default=True)
+    #avoid_pa_checks = fields.Boolean(help="Se abilitato, salta i controlli legati alle P.A.",default=True)
     is_holding = fields.Boolean(help="Se abilitato, indica che l'azienda è una holding")
     holding_company_id = fields.Many2one('res.partner')
     holding_child_ids = fields.One2many('res.partner', 'holding_company_id')
 
-    # GESTIONE ORE
+    '''# GESTIONE ORE
     ore_sviluppo_disponibili = fields.Float(string='ore', compute='_get_ore_sviluppo_disponibili')
     ore_formazione_consulenza_disponibili = fields.Float(compute='_get_ore_formazione_disponibili')
     ore_interne_accumulate = fields.Float(compute='_get_ore_interne')
@@ -207,3 +207,4 @@ class ResPartnerInh(models.Model):
         action['context'] = {}
         action['domain'] = domain
         return action
+        '''
