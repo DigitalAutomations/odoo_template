@@ -1,0 +1,269 @@
+<odoo>
+    <template id="portal_my_home_menu_pacchetti_ore" name="Portal layout : pacchetti ore" inherit_id="portal.portal_breadcrumbs" priority="30">
+        <xpath expr="//ol[hasclass('o_portal_submenu')]" position="inside">
+            <li t-if="page_name == 'pacchetti'" t-attf-class="breadcrumb-item #{'active ' if not pacchetto else ''}">
+                <a t-if="pacchetto" t-attf-href="/my/pacchetti-ore?{{ keep_query() }}">Pacchetti</a>
+                <t t-else="">Pacchetti</t>
+            </li>
+            <li t-if="pacchetto" class="breadcrumb-item active">
+                <t t-esc="pacchetto.name" t-if="pacchetto.name"/>
+                <t t-else=""><em>Pacchetto</em></t>
+            </li>
+        </xpath>
+    </template>
+
+    <template id="addoons_pacchetti_ore_portal" name="Pacchetti Ore">
+        <t t-call="portal.portal_layout">
+            <t t-set="breadcrumbs_searchbar" t-value="True"/>
+
+            <t t-call="portal.portal_searchbar">
+                <t t-set="title">Pacchetti</t>
+            </t>
+
+            <t t-if="not pacchetti_ore">
+                <div class="alert alert-warning mt8" role="alert">
+                    Non esiste nessun Pacchetto Ore associato a questo Cliente.
+                </div>
+            </t>
+            <t t-if="pacchetti_ore">
+                <div class="col-lg-12 mb-5">
+                    <div class="row" style="padding:10px;margin-top: 80px; ">
+                        <span style="font-family:roboto; font-size:23px; font-weight: 300; display:inline-block;"><b style="color: #855471; font-size: 35px; font-weight:650">Pacchetti e Contratti</b></span>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-lg-5">
+                            <div class="row" style="margin-top: 50px">
+                                <div class="col-lg-12" style="font-size:22px; font-style:italic;">DISPONIBILI</div>
+                            </div>
+                            <div class="row" >
+                                <div class="col-lg-6 metro-button-container text-center" >
+                                    <div class="metro-button purple" style="padding:40px 0px 30px 0px;">
+                                        <span ><h1 class="text-center ore_sv" style="font-size: 60px;margin-bottom:15px;"><t t-esc="ore_sv_residue"/></h1></span>
+                                        Ore Sviluppo
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-6 metro-button-container text-center" >
+                                    <div class="metro-button" style="padding:40px 0px 30px 0px;" >
+                                        <span ><h1 class="text-center ore_fc" style="font-size: 60px;  margin-bottom:15px;"><t t-esc="ore_fc_residue"/></h1></span>
+                                        Ore Formazione
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <div class="row" style="margin-top: 50px">
+                                <div class="col-lg-12" style="font-size:22px; font-style:italic; "></div>
+                            </div>
+                            <div class="col-lg-12 metro-button-container mt-2" >
+                                <a href="/my/pacchetti-ore/acquista-ore">
+                                    <div class="metro-button" style="height: 100px; width: 100px;border-radius: 50%; background-color: #00A09D; color: white; font-size: 30px;padding:30px 0px 30px 0px;
+                                                                                                                            margin-top: 35px; margin-right: auto; margin-left: auto;">
+                                        <i class="fa fa-plus"/>
+                                    </div>
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="row" style="margin-top: 50px">
+                                <div class="col-lg-12" style="font-size:22px; font-style:italic;">UTILIZZATE</div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6 metro-button-container text-center" >
+                                    <div class="metro-button purple" style="padding:40px 0px 30px 0px;">
+                                        <span ><h1 class="text-center" style="font-size: 60px;  margin-bottom:15px;"><t t-esc="ore_sv_utilizzate"/></h1></span>
+                                        Ore Sviluppo
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-6 metro-button-container text-center" >
+                                    <div class="metro-button" style="padding:40px 0px 30px 0px;">
+                                        <span ><h1 class="text-center" style="font-size: 60px;margin-bottom:15px;"><t t-esc="ore_fc_utilizzate"/></h1></span>
+                                        Ore Formazione
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 mb-5 ">
+                    <div class="table-responsive border rounded border-top-0">
+                        <table class="table rounded mb-0 bg-white o_portal_my_doc_table">
+                            <thead>
+                                <tr class="active">
+                                    <th>Nome</th>
+                                    <th>Ore Totali</th>
+                                    <th>Ore Residue</th>
+                                    <th>Tipo</th>
+                                    <th>Ordine</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr t-foreach="pacchetti_ore" t-as="pacchetto">
+                                    <td style="width:40%;">
+                                        <a t-attf-href="/my/pacchetto-ore/#{pacchetto.id}?{{ keep_query() }}"><span t-field="pacchetto.name"/></a>
+                                    </td>
+                                    <td style="width:10%;">
+                                        <span style="float:right;" t-field="pacchetto.hours"/>
+                                    </td>
+                                    <td style="width:10%;">
+                                        <span style="float:right;" t-field="pacchetto.ore_residue"/>
+                                    </td>
+                                    <td style="width:20%;">
+                                        <span t-field="pacchetto.type"/>
+                                    </td>
+                                    <td style="width:20%;">
+                                        <span t-field="pacchetto.order_id"/>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+            <div class="col-lg-12 mb-5">
+                <div class="row" style="padding:10px;margin-top: 80px; ">
+                    <span style="font-family:roboto; font-size:23px; font-weight: 300; display:inline-block;"><b style="color: #855471; font-size: 35px; font-weight:650">Ore interne non addebitate</b></span>
+                </div>
+                <t t-if="not ore_interne">
+                    <div class="alert alert-warning mt8" role="alert">
+                        Non esistono Ore Interne associate a questo Cliente.
+                    </div>
+                </t>
+                <t t-else="">
+                    <t t-call="portal.portal_table">
+                        <thead>
+                            <tr class="active">
+                                <th>Progetto</th>
+                                <th>Task</th>
+                                <th>Dipendente</th>
+                                <th>Descrizione</th>
+                                <th>Data</th>
+                                <th class="text-right">Durata</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="ore_interne" t-as="riga_ore_interne">
+                                <td>
+                                    <a t-attf-href="/my/projects/#{riga_ore_interne.task_id.project_id.id}?{{ keep_query() }}">
+                                        <span t-field="riga_ore_interne.task_id.project_id.name"/>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a t-attf-href="/my/task/#{riga_ore_interne.task_id.id}?{{ keep_query() }}">
+                                        <span t-field="riga_ore_interne.task_id.name"/>
+                                    </a>
+                                </td>
+                                <td>
+                                    <span t-field="riga_ore_interne.employee_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="riga_ore_interne.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="riga_ore_interne.date"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="riga_ore_interne.unit_amount" t-options='{"widget": "duration", "unit": "hour", "round": "minute"}'/>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </t>
+                </t>
+
+            </div>
+        </t>
+    </template>
+
+    <template id="portal_my_pacchetto" name="Il mio pacchetto">
+        <t t-call="portal.portal_layout">
+            <t t-call="portal.portal_record_layout">
+                <t t-set="card_header">
+                    <div class="row no-gutters">
+                        <div class="col-md">
+                            <h5 class="mb-1 mb-md-0">
+                                <span t-field="pacchetto.name"/>
+                            </h5>
+                        </div>
+                        <div class="col-md text-md-right packet-header">
+                            <span class="text-right">Stato:</span>
+                            <t t-if="pacchetto.ore_residue > 0">
+                                <span t-esc="'ATTIVO'"  class="packet-header badge badge-pill active-packet" title="Stato del pacchetto"/>
+                            </t>
+                            <t t-else="">
+                                <span t-esc="'ESAURITO'" class="packet-header badge badge-pill expired-packet" title="Stato del pacchetto"/>
+                            </t>
+                        </div>
+                    </div>
+                </t>
+                <t t-set="card_body">
+                    <div class="row packet-header" style="text-align:center">
+                        <div class="col-2" style="padding:0">
+                            <img src="/addoons_website_theme/static/src/img/gear.png" style="height:24px;"/><br/>
+                            <span><strong>Tipo</strong><br/><t t-esc="dict(pacchetto._fields['type'].selection).get(pacchetto.type)"/> </span>
+                        </div>
+                        <div class="col-2">
+                            <img src="/addoons_website_theme/static/src/img/clock.png" style="height:24px;"/><br/>
+                            <span style="padding:0"><strong>Ore Totali</strong><br/> <t t-esc="pacchetto.hours"/> </span>
+                        </div>
+                        <div class="col-2">
+                            <img src="/addoons_website_theme/static/src/img/clock.png" style="height:24px;"/><br/>
+                            <span style="padding:0"><strong>Ore Residue</strong><br/> <t t-esc="pacchetto.ore_residue"/> </span>
+                        </div>
+                        <div class="col-2">
+                            <img src="/addoons_website_theme/static/src/img/clock.png" style="height:24px;"/><br/>
+                            <span style="padding:0"><strong>Ore Utilizzate</strong><br/> <t t-esc="pacchetto.hours-pacchetto.ore_residue"/> </span>
+                        </div>
+                        <div class="col-4">
+                            <img src="/addoons_website_theme/static/src/img/notes.png" style="height:24px;"/><br/>
+                            <span style="padding:0"><strong>Descrizione</strong><br/><t t-esc="pacchetto.description"/> </span>
+                        </div>
+                    </div>
+                    <div class="container" t-if="pacchetto.ore_lines">
+                        <hr class="mt-4 mb-1"/>
+                        <h5 class="mt-2 mb-2">Ore Utilizzate</h5>
+                        <table class="table table-sm" >
+                            <thead>
+                                <tr style="background-color: white">
+                                    <th>Attività</th>
+                                    <th>Data</th>
+                                    <th>Dipendente</th>
+                                    <th>Descrizione</th>
+                                    <th class="text-right">Durata</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <script>
+                                $(document).ready(function()
+                                {
+                                $("tr:even").css("background-color", "white");
+                                });
+                            </script>
+                            <tr t-foreach="pacchetto.ore_lines" t-as="timesheet">
+                                <td style="padding-left:0"><t t-esc="timesheet.task_id.name"/></td>
+                                <td><t t-esc="timesheet.date" t-options='{"widget": "date"}'/></td>
+                                <td><t t-esc="timesheet.sudo().user_id.name"/></td>
+                                <td><t t-esc="timesheet.name"/></td>
+                                <td class="text-right"><span t-field="timesheet.unit_amount" t-options='{"widget": "duration", "unit": "hour", "round": "minute"}'/></td>
+                                <td style="text-align:center;padding-top:0 !important;padding-right:0 !important;"><a class="btn" style="width:100%;background-color:#855471; color:white;" t-attf-href="/my/task/#{timesheet.task_id.id}?{{ keep_query() }}">Apri</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+
+            <div class="mt32">
+                <h4><strong>Comunicazioni</strong></h4>
+                <t t-call="portal.message_thread">
+                    <t t-set="object" t-value="pacchetto"/>
+                    <t t-set="token" t-value="pacchetto.access_token"/>
+                    <t t-set="pid" t-value="pid"/>
+                    <t t-set="hash" t-value="hash"/>
+                </t>
+            </div>
+        </t>
+    </template>
+</odoo>

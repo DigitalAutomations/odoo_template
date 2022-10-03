@@ -1,0 +1,118 @@
+<odoo>
+    <record model="ir.ui.view" id="view_task_form2_inherited">
+        <field name="name">project.task.form.inherited</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2" />
+        <field name="groups_id" eval="[(6,0, (ref('hr_timesheet.group_hr_timesheet_user'),))]"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='timesheet_ids']/tree/field[@name='name']" position="after">
+                <field name="tipo_ore" required="1"/>
+                <field name="pacchetto_ore_id" readonly="1"/>
+            </xpath>
+
+            <xpath expr="//field[@name='tag_ids']" position="after">
+                <field name="ore_sviluppo_disponibili" string="Ore Residue Sviluppo" widget="timesheet_uom" attrs="{'invisible':[('sale_line_id', '=', False)]}"/>
+                <field name="ore_formazione_consulenza_disponibili" string="Ore Residue Formazione" widget="timesheet_uom" attrs="{'invisible':[('sale_line_id', '=', False)]}"/>
+            </xpath>
+
+            <xpath expr="//notebook" position="before">
+                <field name="avviso_ore_terminate" readonly="1" attrs="{'invisible':[('sale_line_id', '=', False)]}"/>
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="aliquid_project_form_view" model="ir.ui.view">
+        <field name="name">aliquid.project.form</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <xpath expr="//form/sheet/div/button[@name='toggle_active']" position="before">
+                <button  class="oe_stat_button" name="action_view_timesheet" string="Panoramica" type="object" icon="fa-pencil"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="aliquid_purchase_form_view" model="ir.ui.view">
+        <field name="name">aliquid.purchase.form</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_order']" position="after">
+
+                <field name="project_id" string="Progetto"/>
+
+            </xpath>
+        </field>
+    </record>
+    <menuitem id="hr_timesheet.timesheet_menu_activity_all"
+              name="Tutti i Fogli Ore"
+              parent="hr_timesheet.menu_hr_time_tracking"
+              action="hr_timesheet.timesheet_action_all"
+              groups="hr_timesheet.group_timesheet_manager"/>
+
+    <record id="aliquid_project_overview" model="ir.ui.view">
+        <field name="name">project.project.kanban.inherit.sale.timesheet</field>
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="sale_timesheet.project_project_view_kanban_inherit_sale_timesheet"/>
+        <field name="arch" type="xml">
+            <xpath expr="//a[@t-if='record.allow_timesheets.raw_value']" position="replace">
+                <a name="action_view_timesheet" type="object" class="o_project_kanban_box o_project_timesheet_box" groups="project.group_project_manager">
+                    <div>
+                        <span class="o_label">Panoramica</span>
+                    </div>
+                </a>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="aliquid_project_profitability_report_view_search" model="ir.ui.view">
+        <field name="name">aliquid_project_profitability_report_view_search</field>
+        <field name="model">aliquid.project.profitability.report.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="project_id" string="Progetto"/>
+                <field name="partner_id" string="Cliente"/>
+                <filter name="analytic_account_id" string="Conto Analitico" context="{'group_by':'analytic_account_id'}"/>
+                <filter name="partner_id" string="Cliente" context="{'group_by':'partner_id'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="aliquid_project_profitability_report_view_pivot" model="ir.ui.view">
+        <field name="name">aliquid.project.profitability.report.pivot</field>
+        <field name="model">aliquid.project.profitability.report.line</field>
+        <field name="arch" type="xml">
+            <pivot string="Costi e ricavi del progetto" disable_linking="True">
+                <field name="project_id" type="row"/>
+                <field name="amount_untaxed_to_invoice" type="measure"/>
+                <field name="amount_untaxed_invoiced" type="measure"/>
+                <field name="timesheet_cost" type="measure"/>
+                <field name="expense_cost" string="Altri Costi" type="measure"/>
+                <field name="total_profit" string="Totale Profitto" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="aliquid_profitability_action">
+        <field name="name">Costi e Ricavi del Progetto</field>
+        <field name="res_model">aliquid.project.profitability.report.line</field>
+        <field name="view_mode">pivot</field>
+        <field name="view_id" ref="addoons_aliquid.aliquid_project_profitability_report_view_pivot"/>
+    </record>
+
+    <record id="aliquid_profitability_action_server" model="ir.actions.server">
+        <field name="name">Aggiorna Report Costi e Ricavi</field>
+        <field name="type">ir.actions.server</field>
+        <field name="model_id" ref="model_aliquid_project_profitability_report_line" />
+        <field name="state">code</field>
+        <field name="code">
+            action = env['aliquid.project.profitability.report.line'].calculate_records()
+        </field>
+    </record>
+
+    <menuitem id="aliquid_profitability_menu" name="Costi e Ricavi Progetto" sequence="2" parent="project.menu_project_report" action="aliquid_profitability_action_server"/>
+</odoo>

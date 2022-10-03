@@ -1,0 +1,23 @@
+<odoo>
+    <record id="wizard_import_res_partner_form" model="ir.ui.view">
+        <field name="name">wizard_import_partners</field>
+        <field name="model">wizard.xls.res.partner</field>
+        <field name="arch" type="xml">
+            <form string="Importa Clienti/Fornitori">
+                <sheet>
+                    <group>
+                        <field name="file" string="File Anagrafiche (XLSX)"/>
+                        <field name="fornitori" string="Fornitori"/>
+                        <field name="metodi_pagamento" string="Metodi Pagamento"/>
+                        <field name="file_metodi_pagamento" string="File Metodi Pagamento (XLSX)"
+                        attrs="{'invisible':[('metodi_pagamento', '!=', True)]}"/>
+                    </group>
+                    <footer>
+                        <button name="import_partners" string="Importa Clienti/Fornitori" class="btn btn-success" type="object"/>
+                        <button name="delete_all" string="Cancella Clienti/Fornitori" class="btn btn-danger" type="object"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

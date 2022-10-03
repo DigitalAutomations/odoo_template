@@ -1,0 +1,9 @@
+#. module: helpdesk
+#: model_terms:ir.ui.view,arch_db:helpdesk.tickets_followup
+msgid "<strong class=\"col-lg-2\">Reported by</strong>"
+msgstr "<strong class=\"col-lg-2\">Aperto da</strong>"
+
+#. module: helpdesk
+#: model_terms:ir.ui.view,arch_db:helpdesk.tickets_followup
+msgid "<strong class=\"col-lg-2\">Reported on</strong>"
+msgstr "<strong class=\"col-lg-2\">Creato il</strong>"

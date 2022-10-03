@@ -1,0 +1,11 @@
+<odoo>
+    <report
+        id="report_ticket_xlsx"
+        string="Resoconto Ticket XLS"
+        model="helpdesk.ticket"
+        report_type="xlsx"
+        name="addoons_aliquid.report_ticket_xls"
+        file="addoons_aliquid.report_ticket_xls"
+        menu="False"
+    />
+</odoo>

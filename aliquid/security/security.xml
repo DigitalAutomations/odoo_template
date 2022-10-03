@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+     <!--Gruppo per non visualizzare la pagina di configurazione del singolo dipendenter (tariffa oraria)-->
+    <record id="group_aliquid_enable_hr_configuration" model="res.groups">
+        <field name="name">HR - Abilita Impostazioni Risorse Umane</field>
+    </record>
+    <record id="group_aliquid_enable_costo_orario" model="res.groups">
+        <field name="name">HR - Abilita Tariffa Oraria</field>
+    </record>
+    <record id="group_aliquid_enable_pacchetti_ore" model="res.groups">
+        <field name="name">Portale - Abilita Pacchetti Ore</field>
+    </record>
+</odoo>

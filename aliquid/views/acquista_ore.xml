@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="portal_my_home_gestione_pacchetti_ore" name="Bottone Pacchetti Ore" inherit_id="portal.portal_my_home" priority="30">
+            <xpath expr="//div[hasclass('o_portal_my_home')]" position="inside">
+                <div style="margin-top:5px;">
+                    <a role="button" id="apri_pacchetti_ore" t-attf-href="/my/pacchetti-ore?{{ keep_query() }}" class="btn btn-primary" style="color: white;" groups="addoons_aliquid.group_aliquid_enable_pacchetti_ore">Pacchetti Ore</a>
+                    <a role="button" id="acquista_pacchetti_ore" t-attf-href="/my/pacchetti-ore/acquista-ore?{{ keep_query() }}" class="btn btn-primary" style="color: white;" groups="addoons_aliquid.group_aliquid_enable_pacchetti_ore">Acquista Ore</a>
+                </div>
+            </xpath>
+        </template>
+
+        <template id="addoons_acquista_ore" >
+            <t t-call="portal.portal_layout">
+                <div style="font-family: 'Roboto'; width:100%">
+                    <div class="row" style="padding-right: 15px; padding-left: 15px">
+                        <div class="col-lg-12">
+                            <div class="row">
+
+                            </div>
+                            <div class="row bg-image" >
+                                <div class="col-lg-6 mt-5 mb-5">
+                                    <div class="row" style="color: white; font-size:40px; font-weight: 300;">
+                                        <div class="col-10 mt-5 " style="text-align: center;margin-left: 50px;">
+                                            <span>Ore di Sviluppo</span>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-5">
+                                        <div class="col-lg-12" style="text-align: center;">
+                                            <input style="font-size: 25px;border-radius: 10px;padding: 5px;" type="number" id="input_ore_sviluppo" min="0" max="999" value="0" step="1"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-6 mt-5 mb-5">
+                                    <div class="row" style="color: white; font-size:40px; font-weight: 300;">
+                                        <div class="col-10 mt-5" style="text-align: center;margin-left: 50px;">
+                                            <span>Ore di Formazione</span>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-5">
+                                        <div class="col-lg-12" style="text-align: center">
+                                            <input style="font-size: 25px;border-radius: 10px;padding: 5px;" type="number" id="input_ore_formazione" min="0" max="999" value="0" step="1"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 acquisto-ore-lines">
+
+                                    <div class="row acquisto-ore-line">
+                                        <div class="col-lg-5 acquisto-ore-text">
+                                            <span>Sviluppo</span>
+
+                                        </div>
+                                        <divc class="col-lg-7 acquisto-ore-value" >
+                                            <span id="qty_sviluppo" style="font-weight: 400;">10h</span> x <span id="prezzo_sviluppo">55</span>€/h
+                                        </divc>
+                                    </div>
+                                    <div class="row mt-5 acquisto-ore-line">
+                                        <div class="col-lg-5 acquisto-ore-text">
+                                            <span>Formazione</span>
+
+                                        </div>
+                                        <divc class="col-lg-7 acquisto-ore-value" >
+                                            <span id="qty_formazione" style="font-weight: 400;">60h</span> x <span id="prezzo_formazione">65</span>€/h
+                                        </divc>
+                                    </div>
+                                    <div class="row mt-5 mb-5 acquisto-ore-line">
+                                        <div class="col-lg-5 acquisto-ore-text" >
+                                            <span>Totale</span>
+                                        </div>
+                                        <div class="col-lg-7 acquisto-ore-value" >
+                                            <span id="totale_prezzo_pachetto" style="font-weight: 400;">4.450,00€</span>
+                                        </div>
+                                    </div>
+                                    <div class="row ">
+                                        <div t-attf-class="mt-5 clearfix oe_login_buttons mb64 col-lg-12" style=" padding:0;position: relative;top: 50%;left: 32%;">
+                                            <button id="btn-acquista" class="btn btn-primary-login btn-block" style="font-size: 25px;background-color:#875A7B;color:white;width:400px;">ACQUISTA</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+    </data>
+</odoo>

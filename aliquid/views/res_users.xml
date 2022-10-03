@@ -1,0 +1,23 @@
+<odoo>
+    <record id="aliquid_view_users_form" model="ir.ui.view">
+        <field name="name">aliquid_view_users_form</field>
+        <field name="model">res.users</field>
+        <field name="inherit_id" ref="base.view_users_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page name="portal_access" string="Accesso Portale">
+                    <group>
+                        <field name="portal_quotation_access" string="Preventivi"/>
+                        <field name="portal_order_access" string="Ordini"/>
+                        <field name="portal_invoice_access" string="Fatture"/>
+                        <field name="portal_ticket_access" string="Ticket"/>
+                        <field name="portal_subscription_access" string="Abbonamenti"/>
+                    </group>
+                    <group>
+                        <field name="portal_enable_pacchetti_ore" string="Abilita Pacchetti Ore"/>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

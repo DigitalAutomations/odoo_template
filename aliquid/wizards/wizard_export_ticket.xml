@@ -1,0 +1,35 @@
+<odoo>
+    <record id="wizard_export_ticket_form" model="ir.ui.view">
+        <field name="name">wizard_export_ticket_form</field>
+        <field name="model">wizard.export.ticket</field>
+        <field name="arch" type="xml">
+            <form string="Resoconto TIcket">
+                <sheet>
+                    <group>
+                        <field name="date_start" string="Data Inizio"/>
+                        <field name="date_end" string="Data Fine"/>
+                        <field name="show_only_failed" string="Mostra solo SLA falliti"/>
+                    </group>
+                    <footer>
+                        <button name="stampa_resoconto" string="Conferma" class="btn btn-primary" type="object"/>
+                        <button string="Cancella" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <act_window id="wizard_export_ticket_action"
+                name="Resoconto Ticket XLS"
+                src_model="helpdesk.ticket"
+                res_model="wizard.export.ticket"
+                view_type="form" view_mode="form"
+                target="new"
+    />
+
+    <menuitem id="menu_wizard_export_ticket"
+                  name="Resoconto"
+                  parent="helpdesk.helpdesk_menu_config"
+                  sequence="2"
+                  action="wizard_export_ticket_action"/>
+</odoo>

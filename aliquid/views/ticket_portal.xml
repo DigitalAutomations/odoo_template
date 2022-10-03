@@ -1,0 +1,198 @@
+<odoo>
+    <template id="aliquid_portal_layout" inherit_id="portal.portal_layout" name="Layout Portale">
+        <xpath expr="//t/div/div/t/div/div/div/div" position="before">
+            <div id="immagine-profilo">
+                <img class="img img-responsive" style="float:right; display: inline-block; border-radius: 100%; border: solid 2px #855471;"
+                     t-attf-src="/web/image?model=res.users&amp;field=image_small&amp;id={{user_id.id}}" />
+            </div>
+        </xpath>
+    </template>
+
+    <template id="aliquid_portal_tree" inherit_id="helpdesk.portal_helpdesk_ticket" name="Helpdesk Ticket">
+        <xpath expr="//thead" position="replace">
+            <style>
+                .container {
+                max-width: 1400px;
+                }
+            </style>
+            <thead>
+                <tr class="active">
+                    <th class="select_all">Seleziona</th>
+                    <th class="text-right">N° Ticket</th>
+                    <th class="w-100">Descrizione</th><th/>
+                    <th>Creato il</th>
+                    <th>Creato da</th>
+                    <th class="text-center">Stato</th>
+                    <th class="text-right">Ore Totali</th>
+                </tr>
+            </thead>
+        </xpath>
+        <xpath expr="//t/t" position="inside">
+            <script>
+                odoo.define('addoons_aliquid.ticket_portal', function (require) {
+                    "use strict";
+                    var rpc = require('web.rpc');
+                    var ajax = require('web.ajax');
+
+                    $('.select_row').on('click', function (event) {
+                        if(this.parentNode.parentNode.classList.contains('selected')){
+                            this.parentNode.parentNode.classList.remove('selected');
+                            this.parentNode.parentNode.style.backgroundColor = 'white';
+                        }else{
+                            this.parentNode.parentNode.classList.add('selected');
+                            this.parentNode.parentNode.style.backgroundColor = '#C0C0C0';
+                        }
+                    });
+
+                    $('#select_all').on('click', function () {
+                        var rows = document.getElementsByClassName("selected");
+                        for (var i=0; i &lt; rows.length;){
+                            var checkbox = rows[i].getElementsByClassName('select_row');
+                            checkbox[0].checked = false;
+                            rows[i].style.backgroundColor = 'white';
+                            rows[i].classList.remove('multiple_selection');
+                            rows[i].classList.remove('selected');
+                        }
+                        $('.select_row').trigger("click");
+                    });
+
+                    $('#deselect_all').on('click', function () {
+                        var rows = document.getElementsByClassName("order_row");
+                        for (var i=0; i &lt; rows.length; i++){
+                            var checkbox = rows[i].getElementsByClassName('select_row');
+                            checkbox[0].checked = true;
+                            rows[i].style.backgroundColor = '#C0C0C0';
+                            rows[i].classList.add('multiple_selection');
+                            rows[i].classList.add('selected');
+                        }
+                        $('.select_row').trigger("click");
+                    });
+
+                    $('#export_excel').on('click', function () {
+                        console.log("STAMPA XLS");
+                        var rows = document.getElementsByClassName("selected");
+                        var self = this;
+                        var order_list = "order_list=";
+                        for (var i=0; i &lt; rows.length; i++){
+                            order_list = order_list.concat(rows[i].cells[1].innerText) + ';';
+                        }
+                        var req = new XMLHttpRequest();
+                        req.open("POST", window.location.origin + '/my/tycket/stampa_report_xls', true);
+                        req.setRequestHeader('Content-type', 'application/vnd.ms-excel');
+                        req.responseType = "blob";
+                        req.onload = function (event) {
+                            var blob = req.response;
+                            var fileName = req.getResponseHeader("filename")
+                            var link=document.createElement('a');
+                            link.href=window.URL.createObjectURL(blob);
+                            link.download=fileName;
+                            link.click();
+                        };
+                        req.send(order_list);
+                    });
+                });
+            </script>
+        </xpath>
+        <xpath expr="//t/t/t/tr/td[@class='text-right']" position="before">
+            <td><input type="checkbox" class="select_row"/></td>
+        </xpath>
+        <xpath expr="//t/t/t/tr/td[@class='text-center']" position="before">
+            <td><span class="col-lg-10" t-esc="ticket.create_date" t-options= '{"widget": "date"}'/></td>
+            <td><span class="col-lg-10" t-esc="ticket.partner_id.name"/></td>
+        </xpath>
+        <xpath expr="//t/t/t/tr" position="inside">
+            <td class="text-right"><span class="col-lg-10" t-esc="ticket.tot_worked_hours" t-options= '{"widget": "float_time"}'/></td>
+        </xpath>
+    </template>
+
+    <template id="aliquid_portal_my_tickets" inherit_id="helpdesk.portal_helpdesk_ticket" name="My Tickets">
+        <xpath expr="//t[@t-call='portal.portal_searchbar']" position="after">
+            <div class="row">
+                <div class="col-2">
+                    <a role="button" id="select_all" class="btn btn-primary" style="color: white;">Seleziona Tutto</a>
+                    <a role="button" id="deselect_all" class="btn btn-danger" style="color: white;">Annulla</a>
+                </div>
+                <div class="col-lg-6">
+
+                </div>
+                <div class="col-lg-2 mb-2">
+                    <a role="button" id="export_excel" class="btn btn-primary"  style="color: white;border-radius:0px; width:100%;"><i class="fa fa-download"/> EXCEL</a>
+                </div>
+                <div class="col-lg-2 mb-2">
+                    <a role="button" class="btn btn-primary" style="border-radius:0px; width:100%;" data-toggle="modal" data-target="#modalCreaTicket" href="#">CREA TICKET</a>
+                </div>
+                <div class="modal fade modal_new_opp" role="form" id="modalCreaTicket">
+                    <div class="modal-dialog">
+                        <form t-attf-action="/my/tickets/create_ticket" method="POST" enctype="multipart/form-data" class="s_accept_json modal-content">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <header class="modal-header">
+                                <h4 class="modal-title">Nuovo Ticket</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">&amp;times;</button>
+                            </header>
+                            <main class="modal-body" id="new-opp-dialog">
+                                <div class="form-group">
+                                    <label class="col-form-label hdd4" for="name">Nome Ticket</label>
+                                    <input type='text' name="name" required="True" class="form-control"/>
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-form-label hdd4" for="description">Descrizione</label>
+                                    <textarea row="4" name="description" class="form-control"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-form-label hdd4" for="attachments">File</label>
+                                    <input type="file" class="form-control o_website_form_input" name="attachments" multiple="1"/>
+                                </div>
+                            </main>
+                            <footer class="modal-footer">
+                                <button t-attf-class="btn btn-primary new_opp_confirm">Confirm</button> or
+                                <button type="button" class="btn btn-link" data-dismiss="modal" style="padding: 0">Cancel</button>
+                            </footer>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <template id="aliquid_portal_ticket" inherit_id="helpdesk.tickets_followup" name="My Ticket">
+        <xpath expr="//t[@t-set='card_body']" position="inside">
+            <div class="row" t-if="ticket.timesheet_ids" style="margin-top: 40px;">
+                <div class="col-12 col-lg-7 mb-4 mb-md-0 col-lg-12">
+                    <div t-if="ticket.timesheet_ids" >
+                        <strong class="d-block mb-2">Ore di Lavoro</strong>
+                    </div>
+                    <table class="table rounded mb-0 bg-white o_portal_my_doc_table">
+                        <thead>
+                            <tr class="thead-light">
+                                <th class="text-left">Data</th>
+                                <th class="text-left">Qualifica</th>
+                                <th class="text-left">Descrizione</th>
+                                <th class="text-left">Ore</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="ticket.timesheet_ids" t-as="ora_line">
+                                <tr>
+                                    <td  class="text-left">
+                                        <span t-esc="ora_line.date" t-options='{"widget": "date","format": "dd/MM/yyyy"}'/>
+                                    </td>
+                                    <td  class="text-left">
+                                        <span t-esc="ora_line.employee_id.job_title"/>
+                                    </td>
+                                    <td  class="text-left">
+                                        <span t-esc="ora_line.name"/>
+                                    </td>
+                                    <td class="text-left">
+                                        <span t-esc="ora_line.unit_amount" t-options= '{"widget": "float_time"}'/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </xpath>
+    </template>
+</odoo>

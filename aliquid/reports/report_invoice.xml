@@ -1,0 +1,15 @@
+<odoo>
+
+    <template id="aliquid_report_invoice_document" inherit_id="account.report_invoice_document">
+        <xpath expr="//p[@name='payment_term']" position="after">
+            <t t-if="o.type in ['out_invoice', 'out_refund'] and o.partner_id.vat and o.partner_id.vat.startswith('IT')">
+                <div style="text-align:center;font-size:12px;font-style:italic">
+                    Documento privo di valenza fiscale ai sensi dell’art. 21 DPR 633/72
+                </div>
+            </t>
+        </xpath>
+    </template>
+
+
+
+</odoo>
