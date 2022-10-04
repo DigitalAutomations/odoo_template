@@ -1,210 +1,127 @@
-from odoo import api, models, fields
-from odoo.exceptions import ValidationError
+<odoo>
+    <record id="aliquid_res_partner_form_view" model="ir.ui.view">
+        <field name="name">aliquid.res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="company_type" position="after">
+                <div attrs="{'invisible': [('is_company','=', False)]}" class="oe_edit_only">
+                    <field name="is_holding"/><label for="is_holding" string="È una holding"/><br/>
+                </div>
+            </field>
+            <notebook position="inside">
+                <page name="aziende_collegate" string="Aziende Collegate" attrs="{'invisible': [('is_holding','=', False)]}">
+                    <field name="holding_child_ids" widget="many2many"/>
+                </page>
+            </notebook>
+            <field name="vat" position="after">
+                <field name="holding_company_id" string="Azienda Holding Padre"/>
+            </field>
+            <field name="phone" position="after">
+                <field name="fax" string="Fax"/>
+            </field>
+        </field>
+    </record>
 
+    <!--<record id="aliquid_res_partner_form_view" model="ir.ui.view">
+        <field name="name">addoons.res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="l10n_it_fatturapa.view_partner_form_fatturapa"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <page name="fatturapa" position="replace">
+                <page name="fatturapa" string="Fattura Elettronica" groups="account.group_account_invoice" attrs="{'invisible': [('electronic_invoice_subjected','=', False)]}">
+                    <group name="fatturapa_group">
+                        <group attrs="{'invisible': [('electronic_invoice_subjected', '=', False)]}">
+                            <field name="ipa_code" string="Codice IPA" placeholder="IPA123"/>
+                            <field name="codice_destinatario" string="Codice Destinatario" attrs="{'invisible': [('is_pa', '=', True)]}"/>
+                            <field name="pec_destinatario" string="PEC Destinatario" attrs="{'invisible': ['|',('is_pa', '=', True), ('codice_destinatario', '!=', '0000000')]}"/>
+                            <field name="eori_code" string="Codice EORI"/>
+                        </group>
+                    </group>
+                    <group name="pa_fields">
+                        <field name="avoid_pa_checks" string="Disabilita Controlli P.A"/>
+                        <field name="procurement_type" string="Tipo" attrs="{'required':[('avoid_pa_checks', '=', False)]}"/>
+                        <field name="procurement_name" string="Nome" attrs="{'required':[('avoid_pa_checks', '=', False)]}"/>
+                        <field name="procurement_date" string="Data"/>
+                        <field name="procurement_code" string="Codice"/>
+                        <field name="procurement_cig" string="CIG"/>
+                        <field name="procurement_cup" string="CUP"/>
+                    </group>
+                </page>
+            </page>
 
-class ResPartnerInh(models.Model):
-    _inherit = 'res.partner'
+            <field name="company_type" position="after">
+                <div attrs="{'invisible': [('is_company','=', False)]}" class="oe_edit_only">
+                    <field name="is_holding"/><label for="is_holding" string="È una holding"/><br/>
+                </div>
+            </field>
+            <notebook position="inside">
+                <page name="aziende_collegate" string="Aziende Collegate" attrs="{'invisible': [('is_holding','=', False)]}">
+                    <field name="holding_child_ids" widget="many2many"/>
+                </page>
+            </notebook>
+            <field name="vat" position="after">
+                <field name="holding_company_id" string="Azienda Holding Padre"/>
+            </field>
+            <xpath expr="//div[@name='button_box']" position="inside">
 
-    fax = fields.Char()
-    #avoid_pa_checks = fields.Boolean(help="Se abilitato, salta i controlli legati alle P.A.",default=True)
-    is_holding = fields.Boolean(help="Se abilitato, indica che l'azienda è una holding")
-    holding_company_id = fields.Many2one('res.partner')
-    holding_child_ids = fields.One2many('res.partner', 'holding_company_id')
+                <button name="addoons_action_view_ore_dev" type="object" class="oe_stat_button" icon="fa-indent"  >
+                    <field name="ore_sviluppo_disponibili" string="Ore disponibili" widget="statinfo"/>
+                </button>
 
-    '''# GESTIONE ORE
-    ore_sviluppo_disponibili = fields.Float(string='ore', compute='_get_ore_sviluppo_disponibili')
-    ore_formazione_consulenza_disponibili = fields.Float(compute='_get_ore_formazione_disponibili')
-    ore_interne_accumulate = fields.Float(compute='_get_ore_interne')
+                <button name="addoons_action_view_ore_training" type="object" class="oe_stat_button" icon="fa-university" >
+                    <field name="ore_formazione_consulenza_disponibili" string="Ore formazione" widget="statinfo"/>
+                </button>
 
-    soglia_ore_sviluppo = fields.Float(default=10)
-    soglia_ore_formazione = fields.Float(default=10)
+                <button name="addoons_action_view_ore_internal" type="object" class="oe_stat_button" icon="fa-clock-o" >
+                    <field name="ore_interne_accumulate" string="Ore interne" widget="statinfo"/>
+                </button>
 
-    notifica_sviluppo = fields.Boolean()
-    notifica_formazione = fields.Boolean()
+            </xpath>
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="soglia_ore_sviluppo" string="Soglia Notifica Ore Sviluppo" />
+                <field name="soglia_ore_formazione" string="Soglia Notifica ore Formazione" />
+            </xpath>
 
-    ore_interne_ids = fields.Many2many('account.analytic.line')
+            <xpath expr="//notebook/page[1]" position="after">
+                <page string="Ore Interne">
+                    <field name="ore_interne_ids" readonly="1" ></field>
+                </page>
+            </xpath>
+        </field>
+    </record>
 
-    def _get_ore_formazione_disponibili(self):
-        for record in self:
-            if record.parent_id:
-                #conto le ore assegnate alla compagnia
-                company = record.parent_id
-            else:
-                company = record
-            ore_disponibili = 0
+    <record model="ir.ui.view" id="aliquid_partner_kanban_view">
+        <field name="name">aliquid.res.partner.kanban.inherit</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+        <field name="arch" type="xml">
+            <field name="mobile" position="after">
+                <field name="ref"/>
+            </field>
+            <xpath expr="//strong[hasclass('oe_partner_heading')]" position="after">
+                <div t-if="record.ref.value">Rif. Interno: <field name="ref"/></div>
+            </xpath>
+        </field>
+    </record>
 
-            pacchetti_ore = self.env['pacchetti.ore'].search([('partner_id', '=', company.id),
-                                                              ('type', '=', 'training'), ('ore_residue', '>', 0)])
-
-            for pacchetto in pacchetti_ore:
-                ore_disponibili += pacchetto.ore_residue
-
-            record.ore_formazione_consulenza_disponibili = ore_disponibili
-
-    def _get_ore_sviluppo_disponibili(self):
-        for record in self:
-            if record.parent_id:
-                company = record.parent_id
-            else:
-                company = record
-
-            ore_disponibili = 0
-
-            pacchetti_ore = self.env['pacchetti.ore'].search(
-                [('partner_id', '=', company.id), ('type', '=', 'developing')])
-
-            for pacchetto in pacchetti_ore:
-                ore_disponibili += pacchetto.ore_residue
-
-            record.ore_sviluppo_disponibili = ore_disponibili
-
-    def _get_ore_interne(self):
-        return
-        # for record in self:
-        #     ore_interne = 0
-        #     if record.parent_id:
-        #         company = record.parent_id
-        #     else:
-        #         company = record
-        #     for ore in company.ore_interne_ids:
-        #         if ore.type == 'internal':
-        #             ore_interne += ore.unit_amount
-        #     record.ore_interne_accumulate = ore_interne
-
-    def addoons_action_view_ore_dev(self):
-        return {
-            'name': _('Ore sviluppo'),
-            'view_mode': 'tree',
-            'res_model': 'pacchetti.ore',
-            'context': {'search_default_partner_id': self.id,
-                        'search_default_type': 'developing'},
-            'type': 'ir.actions.act_window',
-            'target': 'current',
-        }
-
-    def addoons_action_view_ore_training(self):
-        return {
-            'name': _('Ore formazione/consulenza'),
-            'view_mode': 'tree',
-            'res_model': 'pacchetti.ore',
-            'context': {'search_default_partner_id': self.id,
-                        'search_default_type': 'training'},
-            'type': 'ir.actions.act_window',
-            'target': 'current',
-        }
-
-    def addoons_action_view_ore_internal(self):
-        return {
-            'name': _('Ore Interne'),
-            'view_mode': 'tree',
-            'res_model': 'account.analytic.line',
-            'domain':['|',('partner_id','=',self.id),('partner_id','in',self.child_ids.ids),('type','=','internal')],
-            'type': 'ir.actions.act_window',
-            'target': 'current',
-        }
-
-
-    def _check_ftpa_partner_data(self):
-        for partner in self:
-            if partner.electronic_invoice_subjected and partner.customer:
-                # These checks must be done for customers only, as only
-                # needed for XML generation
-                if partner.is_pa and (
-                    not partner.ipa_code or len(partner.ipa_code) != 6
-                ) and not partner.avoid_pa_checks:
-                    raise ValidationError(
-                        "As a Public Administration, partner %s IPA Code "
-                        "must be 6 characters long."
-                    % partner.name)
-                if (
-                    partner.company_type == 'person' and not
-                    partner.company_name and (
-                        not partner.lastname or not partner.firstname
-                    )
-                ):
-                    raise ValidationError(
-                        "As a natural person, partner %s "
-                        "must have Name and Surname."
-                    % partner.name)
-                # if (
-                #     not partner.is_pa
-                #     and not partner.codice_destinatario
-                # ):
-                #     raise ValidationError(
-                #         "Partner %s must have Addresse Code. Use %s if unknown"
-                #     % (partner.name, STANDARD_ADDRESSEE_CODE))
-                if (
-                    not partner.is_pa
-                    and partner.codice_destinatario
-                    and len(partner.codice_destinatario) != 7
-                ):
-                    raise ValidationError(
-                        "Partner %s Addressee Code "
-                        "must be 7 characters long."
-                    % partner.name)
-                # if partner.pec_destinatario:
-                #     if partner.codice_destinatario != STANDARD_ADDRESSEE_CODE:
-                #         raise ValidationError(_(
-                #             "Partner %s has Addressee PEC %s, "
-                #             "the Addresse Code must be %s."
-                #         ) % (partner.name,
-                #              partner.pec_destinatario,
-                #              STANDARD_ADDRESSEE_CODE))
-                if (
-                        (not partner.vat and not partner.fiscalcode) and
-                    partner.country_id.code == 'IT'
-                ):
-                    raise ValidationError(
-                        "Italian partner %s must "
-                        "have VAT Number or Fiscal Code."
-                    % partner.name)
-                if not partner.street:
-                    raise ValidationError(
-                        'Customer %s: street is needed for XML generation.'
-                    % partner.name)
-                if not partner.zip and partner.country_id.code == 'IT':
-                    raise ValidationError(
-                        'Italian partner %s: ZIP is needed for XML generation.'
-                    % partner.name)
-                if not partner.city:
-                    raise ValidationError(
-                        'Customer %s: city is needed for XML generation.'
-                    % partner.name)
-                if not partner.country_id:
-                    raise ValidationError(
-                        'Customer %s: country is needed for XML'
-                        ' generation.'
-                    % partner.name)
-
-    def _compute_ticket_count(self):
-        if self.child_ids:
-            # retrieve all children partners and prefetch 'parent_id' on them
-            all_partners = self.search([('id', 'child_of', self.ids)])
-            # all_partners.read(['parent_id'])
-
-            # group tickets by partner, and account for each partner in self
-            groups = self.env['helpdesk.ticket'].read_group(
-                ['|', ('partner_id', 'in', all_partners.ids),('partner_child_id', 'in', all_partners.ids)],
-                fields=['partner_id'], groupby=['partner_id'],
-            )
-            for group in groups:
-                partner = self.browse(group['partner_id'][0])
-                while partner:
-                    if partner in self:
-                        partner.ticket_count += group['partner_id_count']
-                    partner = partner.parent_id
-        else:
-            ticket_ids = self.env['helpdesk.ticket'].search(['|', ('partner_child_id', '=', self.id), ('partner_email', '=', self.email)])
-            self.ticket_count = len(ticket_ids)
-
-    @api.multi
-    def action_open_helpdesk_ticket(self):
-        if self.child_ids:
-            domain = [('partner_id', 'child_of', self.ids)]
-        else:
-            domain = ['|', ('partner_child_id', '=', self.id), ('partner_email', '=', self.email)]
-        action = self.env.ref('helpdesk.helpdesk_ticket_action_main_tree').read()[0]
-        action['context'] = {}
-        action['domain'] = domain
-        return action
-        '''
+    <record model="ir.ui.view" id="aliquid_partner_view_ticket_button_view">
+        <field name="name">aliquid_partner_view_ticket_button_view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="helpdesk.view_partner_form_inherit_helpdesk"/>
+        <field name="arch" type="xml">
+            <button name="action_open_helpdesk_ticket" position="replace">
+                <button class="oe_stat_button" type="object"
+                        name="action_open_helpdesk_ticket" context="{'default_partner_id': active_id}" icon="fa-life-ring">
+                    <div class="o_stat_info">
+                        <field name="ticket_count" class="o_stat_value"/>
+                        <span class="o_stat_text"> Tickets</span>
+                    </div>
+                </button>
+            </button>
+        </field>
+    </record>
+-->
+</odoo>

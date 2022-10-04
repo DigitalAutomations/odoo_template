@@ -1,17 +1,18 @@
 <odoo>
-    <record id="aliquid_sale_form_view" model="ir.ui.view">
+    <record id="aliquid_sale_form_view" model= "ir.ui.view">
         <field name="name">aliquid.sale.form</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_order_form"/>
         <field name="type">form</field>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='confirmation_date']" position="after">
+            <xpath expr="//field[@name='date_order']" position="after">
                 <field name="project_id" string="Progetto"/>
                 <field name="is_ordine_quadro" string="È Ordine Quadro"/>
             </xpath>
+            
             <notebook position="before">
                 <group>
-                    <field name="summary" string="Descrizione Ordine"/>
+                    <field name="is_ordine_quadro" string="È Ordine Quadro"/>
                 </group>
             </notebook>
             <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='product_id']" position="attributes">
@@ -20,7 +21,8 @@
             <xpath expr="//form/sheet/group/group/field[@name='partner_id']" position="attributes">
                 <attribute name="options">{'no_create': True, 'no_create_edit':True}</attribute>
             </xpath>
-            <xpath expr="//button[@name='action_unlock']" position="after">
+            
+            <!--<xpath expr="//button[@name='action_unlock']" position="after">
                 <button name="crea_pacchetto" string="Crea Pacchetto" type="object" class="" attrs="{'invisible': ['|',('vendita_pacchetto_ore','=', False),('counter_pacchetti_ore', '>', 0)]}"/>
             </xpath>
             <xpath expr="//field[@name='payment_term_id']" position="after">
@@ -41,7 +43,7 @@
                         </tree>
                     </field>
                 </page>
-            </xpath>
+            </xpath>-->
         </field>
     </record>
 

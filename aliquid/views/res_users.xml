@@ -13,9 +13,9 @@
                         <field name="portal_ticket_access" string="Ticket"/>
                         <field name="portal_subscription_access" string="Abbonamenti"/>
                     </group>
-                    <group>
+                    <!--<group>
                         <field name="portal_enable_pacchetti_ore" string="Abilita Pacchetti Ore"/>
-                    </group>
+                    </group>-->
                 </page>
             </xpath>
         </field>

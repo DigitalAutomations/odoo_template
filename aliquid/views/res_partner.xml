@@ -11,7 +11,7 @@
         </field>
     </record>
 
-    <record id="aliquid_res_partner_form_view" model="ir.ui.view">
+    <!--<record id="aliquid_res_partner_form_view" model="ir.ui.view">
         <field name="name">addoons.res.partner.form</field>
         <field name="model">res.partner</field>
         <field name="inherit_id" ref="l10n_it_fatturapa.view_partner_form_fatturapa"/>
@@ -110,4 +110,5 @@
             </button>
         </field>
     </record>
+-->
 </odoo>

@@ -3,9 +3,7 @@ from . import res_partner
 #from . import purchase_order
 #from . import sale_subscription
 #from . import account_invoice
-#from . import product_template
 #from . import sale_order
-from . import crm_lead
 from . import account_payment_term
 #from . import project_project
 #from . import helpdesk_ticket

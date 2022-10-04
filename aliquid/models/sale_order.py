@@ -12,7 +12,7 @@ class SaleOrderInh(models.Model):
     summary = fields.Text()
     is_ordine_quadro = fields.Boolean(help="Indica se l'ordine è di tipo 'Quadro'. Se flaggato, non mostra l'ordine lato portale cliente")
 
-    vendita_pacchetto_ore = fields.Boolean()
+    '''vendita_pacchetto_ore = fields.Boolean()
     pacchetti_ore_ids = fields.One2many('pacchetti.ore', 'order_id')
     counter_pacchetti_ore = fields.Integer(compute="_compute_numero_pacchetti")
 
@@ -64,7 +64,7 @@ class SaleOrderInh(models.Model):
                     'type': 'ir.actions.act_window',
                     'target': 'current',
                 }
-
+    
     @api.multi
     def action_invoice_create(self, grouped=False, final=False):
         """
@@ -267,3 +267,4 @@ class SaleOrderLineInherit(models.Model):
 
     def format_value_float(self, value):
         return "{:,.2f}".format(value).replace(",", "X").replace(".", ",").replace("X", ".")
+        '''
