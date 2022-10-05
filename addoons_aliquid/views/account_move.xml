@@ -1,0 +1,49 @@
+<odoo>
+    <record id="aliquid_invoice_form_view" model="ir.ui.view">
+        <field name="name">aliquid_invoice_form_view</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <notebook position="before">
+                <group>
+                    <field name="project_id" string="Progetto"/>
+                    <field name="summary" string="Descrizione Fattura"/>
+                </group>
+            </notebook>
+            <xpath expr="//form/sheet/notebook/page/field/tree/field[@name='product_id']" position="attributes">
+                <attribute name="options">{'no_create': True, 'no_create_edit':True}</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/group/group/field[@name='partner_id']" position="attributes">
+                <attribute name="options">{'no_create': True, 'no_create_edit':True}</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/notebook/page/group/group/field[@name='invoice_origin']" position="replace">
+                <field name="invoice_origin" string="Documento d'origine" attrs="{'readonly':0}"/>
+                <field name="project_id" string="Progetto"/><!-- XXX hidden if supplier? -->
+            </xpath>
+        </field>
+    </record>
+
+    <record id="aliquid_account_invoice_view_tree" model="ir.ui.view">
+        <field name="name">aliquid_account_invoice_view_tree</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="type">tree</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_date_due']" position="after">
+                <field name="summary" string="Descrizione Fattura"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="aliquid_invoice_tree_view" model="ir.ui.view">
+        <field name="name">aliquid.invoice.search</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="arch" type="xml">
+            <search position="inside">
+                <field name="summary" string="Descrizione Fattura"/>
+            </search>
+        </field>
+    </record>
+</odoo>

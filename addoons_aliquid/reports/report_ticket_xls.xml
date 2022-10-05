@@ -1,0 +1,13 @@
+<odoo>
+    <data>
+        <record id="report_ticket_xlsx" model="ir.actions.report">
+            <field name="name">Resoconto Ticket XLS</field>
+            <field name="model">helpdesk.ticket</field>
+            <field name="report_type">xlsx</field>
+            <field name="report_name">addoons_aliquid.report_ticket_xls</field>
+            <field name="report_file">addoons_aliquid.report_ticket_xls</field>
+            <field name="binding_model_id" ref="model_helpdesk_ticket"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

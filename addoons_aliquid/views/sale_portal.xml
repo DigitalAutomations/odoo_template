@@ -1,0 +1,35 @@
+<odoo>
+    <template id="aliquid_sale_portal_template" inherit_id="sale.sale_order_portal_template" name="Layout Ordine di Vendita">
+        <xpath expr="//div/div/div[hasclass('row', 'justify-content-center', 'text-center', 'd-print-none', 'pt-1', 'pb-4')]/t" position="before">
+            <t t-if="sale_order.has_to_be_signed(True)">
+                <div class="col-sm-auto mt8">
+                    <a role="button" class="btn btn-primary" data-toggle="modal" data-target="#modalacceptattach" href="#"><i class="fa fa-save"/> Accetta e Allega</a>
+                </div>
+            </t>
+
+            <div role="dialog" class="modal fade" id="modalacceptattach">
+                <div class="modal-dialog" t-if="sale_order.has_to_be_signed(True)">
+                    <form t-attf-action="/my/order/upload/document" class="s_accept_json modal-content" enctype="multipart/form-data" method="post" role="form">
+                        <header class="modal-header">
+                            <h4 class="modal-title">Carica Preventivo Firmato</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">&amp;times;</button>
+                        </header>
+                        <main class="modal-body">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+                            <input type="hidden" name="sale_order" t-att-value="sale_order.id"/>
+                            <input type="file" class="form-control o_website_form_input" name="documenti" multiple="1"/>
+
+                        </main>
+                        <footer class="model-footer">
+                            <button type="submit" name="Upload" style="margin:20px;" class="fa fa-upload btn btn-primary">
+                                Carica
+                            </button>
+                        </footer>
+                    </form>
+                </div>
+            </div>
+        </xpath>
+
+    </template>
+</odoo>
