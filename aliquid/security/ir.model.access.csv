@@ -1,5 +1,0 @@
-"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
-access_wizard_xls_product_template,wizard_xls_product_template,model_wizard_xls_product_template,base.group_user,1,1,1,1
-access_wizard_xls_res_partner,wizard_xls_res_partner,model_wizard_xls_res_partner,base.group_user,1,1,1,1
-access_aliquid_project_profitability_report_line,aliquid_project_profitability_report_line,model_aliquid_project_profitability_report_line,base.group_user,1,1,1,1
-access_pacchetti_ore,pacchetti_ore,model_pacchetti_ore,base.group_user,1,1,1,1
