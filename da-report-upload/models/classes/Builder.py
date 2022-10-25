@@ -239,7 +239,7 @@ class Builder:
         # manutenzione anticipata
         if len( self.parser.block1['manutenzione_anticipata']['rows'] ) > 0 and self.parser.block1['manutenzione_anticipata']['total']['valore'] > 0:
             self.models['sale.order.line'].create({
-                'name'            : 'Manutenzione Anticipata',
+                'name'            : 'Servizio Manutenzione Anticipata',
                 'order_id'        : sale_order.id,
                 'price_unit'      : 0,
                 'product_uom_qty' : 0,
@@ -262,7 +262,8 @@ class Builder:
                     'price_unit'      : lic['prezzo'],
                     'product_uom_qty' : lic['qta'],
                     'customer_lead'   : 0,
-                    'discount'        : lic['sconto'] * 100,
+                   #'discount'        : lic['sconto'] * 100,
+                    'discount'        : 0,
                 }
                 self.models['sale.order.line'].create( sale_order_line )
 
@@ -289,7 +290,8 @@ class Builder:
                         'price_unit'      : self.parser.block1['attivazione']['table']['total']['valore'],
                         'product_uom_qty' : 1,
                         'customer_lead'   : 0,
-                        'discount'        : self.parser.block1['attivazione']['sconto'] * 100,
+                       #'discount'        : self.parser.block1['attivazione']['sconto'] * 100,
+                        'discount'        : 0,
                     }
                     self.models['sale.order.line'].create( sale_order_line )
                 else:
