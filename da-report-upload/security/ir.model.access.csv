@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_da_reports,access.da.reports,model_da_reports,,1,1,1,1
+
