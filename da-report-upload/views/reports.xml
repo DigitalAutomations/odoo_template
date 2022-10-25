@@ -24,7 +24,7 @@
                     <button
                         name        = "action_parse_report"
                         data-hotkey = "p"
-                        string      = "Importa Ordini"
+                        string      = "Crea gli ordini"
                         type        = "object"
                     />
                 </header>
@@ -41,7 +41,7 @@
 
     <!-- ACTIONS -->
     <record id="da_reports_action" model="ir.actions.act_window">
-        <field name="name">Reports</field>
+        <field name="name">Importa Ordini</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">da.reports</field>
         <field name="view_mode">tree,kanban,form</field>
