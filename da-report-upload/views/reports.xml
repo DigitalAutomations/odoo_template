@@ -54,7 +54,7 @@
 
     <!-- MENU -->
     <menuitem id="da_reports_root"
-        name="Reports"
+        name="Importa Ordini"
         sequence="14"
         web_icon="da-report-upload,static/src/img/icon.png"
     />
