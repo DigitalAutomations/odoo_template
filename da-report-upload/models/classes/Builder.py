@@ -347,6 +347,7 @@ class Builder:
             'warehouse_id'        : 1,
             'title'               : self.parser.header['title'],
             'num_offerta_stesi'   : self.parser.header['num_offerta'],
+            'state'               :'sale',
         }
         cliente_indiretto = None
         if self.parser.header['cod_cliente_indiretto']:
