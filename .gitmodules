@@ -107,3 +107,8 @@
 	path = OCA/account-analytic
 	url = git@github.com:OCA/account-analytic.git
 	branch = 14.0
+
+[submodule "francescapenso/l10n-italy/l10n_it_fatturapa_import_zip"]
+	path = francescapenso/l10n-italy/l10n_it_fatturapa_import_zip
+	url = git@github.com:francescapenso/l10n-italy.git
+	branch = 14.0-supermerge
