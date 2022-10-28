@@ -1,0 +1,79 @@
+<odoo>
+    <record id="move_line_tree" model="ir.ui.view">
+        <field name="name">move_line_tree</field>
+        <field name="model">account.move.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="product_id" string="Prodotto" invisible="1"/>
+                <field name="move_id" string="Fattura"/>
+                <field name="name" string="Descrizione"/>
+                <field name="account_id" string="Conto"/>
+                <field name="analytic_account_id" string="Conto Analitico"/>
+                <field name="quantity" string="Quantità"/>
+                <field name="price_unit" string="Prezzo Unitario"/>
+                <field name="amount_untaxed_signed" string="Imponibile" sum="Totale Imponibile"/>
+                <field name="amount_tax_signed" string="Imposte" sum="Totale Imposte"/>
+                <field name="amount_total_signed" string="Totale" sum="Totale Riga"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="move_line_search" model="ir.ui.view">
+        <field name="name">move_line_search</field>
+        <field name="model">account.move.line</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="product_id" string="Prodotto"/>
+                <field name="name" string="Descrizione"/>
+                <field name="account_id" string="Conto"/>
+                <field name="analytic_account_id" string="Conto Analitico"/>
+                <filter name="fatture_attive" string="Fatture Attive" domain="[('move_id.state', '!=', 'cancel'),('move_id.move_type', 'in', ('out_move', 'out_refund'))]"/>
+                <filter name="fatture_passive" string="Fatture Passive" domain="[('move_id.state', '!=', 'cancel'),('move_id.move_type', 'in', ('in_move', 'in_refund'))]"/>
+                <!-- XXX receipts? -->
+            </search>
+        </field>
+    </record>
+
+    <record id="move_line_pivot" model="ir.ui.view">
+        <field name="name">move_line_pivot</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="sale_subscription_dashboard.move_line_entries_report_pivot"/>
+        <field name="arch" type="xml">
+            <pivot position="replace">
+                <pivot>
+                    <field name="amount_untaxed_signed" type="measure"/>
+                    <field name="amount_tax_signed" type="measure"/>
+                    <field name="amount_total_signed" type="measure"/>
+                    <field name="company_id" type="row"/>
+                </pivot>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="move_line_pivot_action" model="ir.actions.act_window.view">
+        <field name="sequence" eval="1"/>
+        <field name="view_mode">pivot</field>
+        <field name="view_id" ref="addoons_aliquid.move_line_pivot"/>
+    </record>
+
+    <record model="ir.actions.act_window" id="move_line_customer_action">
+        <field name="name">Righe Fatture</field>
+        <field name="res_model">account.move.line</field>
+        <field name="view_mode">tree,form,pivot</field>
+        <field name="view_id" ref="addoons_aliquid.move_line_tree"/>
+        <field name="search_view_id" ref="addoons_aliquid.move_line_search"/>
+        <field name="context">{'search_default_fatture_attive': 1}</field>
+    </record>
+
+    <record model="ir.actions.act_window" id="move_line_supplier_action">
+        <field name="name">Righe Fatture</field>
+        <field name="res_model">account.move.line</field>
+        <field name="view_mode">tree,form,pivot</field>
+        <field name="view_id" ref="addoons_aliquid.move_line_tree"/>
+        <field name="search_view_id" ref="addoons_aliquid.move_line_search"/>
+        <field name="context">{'search_default_fatture_passive': 1}</field>
+    </record>
+
+    <menuitem id="move_line_customer_menu" name="Righe Fatture Clienti" sequence="2" parent="account.menu_finance_receivables" action="move_line_customer_action"/>
+    <menuitem id="move_line_supplier_menu" name="Righe Fatture Fornitori" sequence="2" parent="account.menu_finance_payables" action="move_line_supplier_action"/>
+</odoo>

@@ -1,0 +1,23 @@
+<odoo>
+    <record id="aliquid_subscription_form" model="ir.ui.view">
+        <field name="name">aliquid.subscription.form</field>
+        <field name="model">sale.subscription</field>
+        <field name="inherit_id" ref="sale_subscription.sale_subscription_view_form"/>
+        <field name="type">form</field>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="after">
+                <field name="partner_email" string="Email"/>
+            </field>
+
+            <field name="code" position="after">
+                <field name="project_id" string="Progetto"/>
+            </field>
+            <xpath expr="//form/sheet/group/group/field[@name='partner_id']" position="attributes">
+                <attribute name="options">{'no_create': True, 'no_create_edit':True}</attribute>
+            </xpath>
+            <xpath expr="//form/sheet/div/notebook/page/div/field/tree/field[@name='product_id']" position="attributes">
+                <attribute name="options">{'no_create': True, 'no_create_edit':True}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
