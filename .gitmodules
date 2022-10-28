@@ -97,3 +97,18 @@
 	path = ilyasProgrammer/sale-workflow/sale_product_advance_payment
 	url = git@github.com:ilyasProgrammer/sale-workflow.git
 	branch = 14.0-sale_product_advance_payment
+
+[submodule "OCA/server-tools"]
+	path = OCA/server-tools
+	url = git@github.com:OCA/server-tools.git
+	branch = 14.0
+
+[submodule "OCA/account-analytic"]
+	path = OCA/account-analytic
+	url = git@github.com:OCA/account-analytic.git
+	branch = 14.0
+
+[submodule "Borruso/l10n-italy/l10n_it_fatturapa_import_zip"]
+	path = Borruso/l10n-italy/l10n_it_fatturapa_import_zip
+	url = git@github.com:Borruso/l10n-italy.git
+	branch = 14.0-mig-l10n_it_fatturapa_import_zip
