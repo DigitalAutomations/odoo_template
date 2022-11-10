@@ -33,7 +33,7 @@ class Builder:
             obj._build()
         except Exception as e:
             logger.info( e )
-        obj.msg('Build Terminato')
+        obj.msg('Build Terminata')
         logger.info( '# # # # # # ' )
         return obj
 
@@ -80,11 +80,13 @@ class Builder:
                             'discount'        : 0,
                         })
                     else:
-                        # messaggio di errore
-                        self.log( 'prod template row non trovata' )
+                        self.msg( '  - prod template row non trovata (codice: "%s")' % ass['articolo'] )
+                        continue;
                 else:
-                    # messaggio di errore
-                    self.log( 'prod row non trovata' )
+                    self.msg( '  - prod row non trovata (codice: "%s")' % ass['articolo'] )
+                    continue;
+        else:
+            self.msg( '  - Nessuna riga di hardware trovata' )
 
     def _build_order_4(self):
         # Assistenza
@@ -119,11 +121,13 @@ class Builder:
                             'discount'        : ass['sconto'] * 100,
                         })
                     else:
-                        # messaggio di errore
-                        self.log( 'prod template row non trovata' )
+                        self.msg( '  - prod template row non trovata (codice: "%s")' % ass['articolo'] )
+                        continue;
                 else:
-                    # messaggio di errore
-                    self.log( 'prod row non trovata' )
+                    self.msg( '  - prod row non trovata (codice: "%s")' % ass['articolo'] )
+                    continue;
+        else:
+            self.msg( '  - Nessuna riga di Assitenza trovata' )
 
     def _build_order_3(self):
         # Manutenzione
@@ -158,11 +162,13 @@ class Builder:
                             'discount'        : ass['sconto'] * 100,
                         })
                     else:
-                        # messaggio di errore
-                        self.log( 'prod template row non trovata' )
+                        self.msg( '  - prod template row non trovata (codice: "%s")' % ass['articolo'] )
+                        continue;
                 else:
-                    # messaggio di errore
-                    self.log( 'prod row non trovata' )
+                    self.msg( '  - prod row non trovata (codice: "%s")' % ass['articolo'] )
+                    continue;
+        else:
+            self.msg( '  - Nessuna riga di Manutenzione trovata' )
 
     def _build_order_2(self):
         # licenze microsoft
@@ -182,12 +188,16 @@ class Builder:
                 'discount'        : 0,
                 'company_id'      : 1,
             });
+        else:
+            self.msg( '  - Nessuna riga di Licenze Microsoft trovata' )
         for lic in self.parser.block2['rows']:
             prod_row = self.models['product.product'].search( [ ( 'default_code', '=', lic['articolo'] ) ] )
             if not prod_row:
+                self.msg( '  - prod row non trovata (codice: "%s")' % lic['articolo'] )
                 continue;
             prod_template_row = self.models['product.template'].search( [ ( 'default_code', '=', lic['articolo'] ) ] )
             if not prod_template_row:
+                self.msg( '  - prod template row non trovata (codice: "%s")' % lic['articolo'] )
                 continue;
             sale_order_line = {
                 'name'            : '[%s] %s' % ( lic['articolo'], prod_template_row['name'] ),
@@ -218,12 +228,16 @@ class Builder:
                 'discount'        : 0,
                 'company_id'      : 1,
             });
+        else:
+            self.msg( '  - Nessuna riga di Licenze trovata' )
         for lic in self.parser.block1['licenze']['rows']:
             prod_row = self.models['product.product'].search( [ ( 'default_code', '=', lic['articolo'] ) ] )
             if not prod_row:
+                self.msg( '  - prod row non trovata (codice: "%s")' % lic['articolo'] )
                 continue;
             prod_template_row = self.models['product.template'].search( [ ( 'default_code', '=', lic['articolo'] ) ] )
             if not prod_template_row:
+                self.msg( '  - prod template row non trovata (codice: "%s")' % lic['articolo'] )
                 continue;
             sale_order_line = {
                 'name'            : '[%s] %s' % ( lic['articolo'], prod_template_row['name'] ),
@@ -251,9 +265,11 @@ class Builder:
             for lic in self.parser.block1['manutenzione_anticipata']['rows']:
                 prod_row = self.models['product.product'].search( [ ( 'default_code', '=', self.parser.block1['manutenzione_anticipata']['total']['articolo'] ) ] )
                 if not prod_row:
+                    self.msg( '  - prod row non trovata (codice: "%s")' % lic['articolo'] )
                     continue;
                 prod_template_row = self.models['product.template'].search( [ ( 'default_code', '=', self.parser.block1['manutenzione_anticipata']['total']['articolo'] ) ] )
                 if not prod_template_row:
+                    self.msg( '  - prod template row non trovata (codice: "%s")' % lic['articolo'] )
                     continue;
                 sale_order_line = {
                     'name'            : '[%s] %s' % ( self.parser.block1['manutenzione_anticipata']['total']['articolo'], prod_template_row['name'] ),
@@ -266,9 +282,12 @@ class Builder:
                     'discount'        : 0,
                 }
                 self.models['sale.order.line'].create( sale_order_line )
+        else:
+            self.msg( '  - Nessuna riga di Manutenzione Anticipata trovata' )
 
         # attivazione
-        if len( self.parser.block1['attivazione']['table']['rows'] ) > 0:
+        #if len( self.parser.block1['attivazione']['table']['rows'] ) > 0:
+        if 'total' in self.parser.block1['attivazione']['table'].keys() and 'valore' in self.parser.block1['attivazione']['table']['total'].keys() and self.parser.block1['attivazione']['table']['total']['valore'] > 0:
             self.models['sale.order.line'].create({
                 'name'            : 'Attivazione',
                 'order_id'        : sale_order.id,
@@ -295,11 +314,11 @@ class Builder:
                     }
                     self.models['sale.order.line'].create( sale_order_line )
                 else:
-                    # messaggio di errore
-                    pass
+                    self.msg( '  - prod template row non trovata (codice: "%s")' % self.parser.block1['attivazione']['table']['total']['articolo'] )
             else:
-                # messaggio di errore
-                pass
+                self.msg( '  - prod row non trovata (codice: "%s")' % self.parser.block1['attivazione']['table']['total']['articolo'] )
+        else:
+            self.msg( '  - Nessuna riga di Attivazione trovata' )
 
         # spese trasferta
         if 'spese_trasferta' in self.parser.block1.keys() and self.parser.block1['spese_trasferta']['valore'] > 0:
@@ -327,14 +346,18 @@ class Builder:
                         'discount'        : self.parser.block1['spese_trasferta']['sconto'] * 100,
                     })
                 else:
-                    # messaggio di errore
-                    pass
+                    self.msg( '  - prod template row non trovata (codice: "%s")' % self.parser.block1['spese_trasferta']['articolo'] )
             else:
-                # messaggio di errore
-                pass
+                self.msg( '  - prod row non trovata (codice: "%s")' % self.parser.block1['spese_trasferta']['articolo'] )
+        else:
+            self.msg( '  - Nessuna riga di Spese di Trasferta trovata' )
 
     def _build_order_header(self):
         self.msg('  - header dell\'ordine')
+        if len( str( self.parser.header['cod_cliente_diretto'] ) ) == 0:
+            self.msg('  - il codice cliente diretto non è stato trovato. Esco.')
+            raise Exception('il codice cliente diretto non è stato trovato')
+        self.log( '"%s"' % self.parser.header['cod_cliente_diretto'] );
         cliente_diretto = self.models['res.partner'].search( [ ( 'ref', '=', self.parser.header['cod_cliente_diretto'] ) ] )
         sale_order_data = {
             'date_order'          : datetime.today().strftime('%Y-%m-%d %H:%M'),

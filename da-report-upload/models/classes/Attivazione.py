@@ -1,6 +1,6 @@
 ######################################
 
-import logging
+import logging, json
 
 from .BaseGroup import BaseGroup
 

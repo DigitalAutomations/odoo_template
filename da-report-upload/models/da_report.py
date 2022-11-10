@@ -24,10 +24,36 @@ class DaReports(models.Model):
     log         = fields.Text( string = 'log', required = False, default = None )
     sale_orders = fields.Many2many( 'sale.order', 'report_sale_order_rel', 'report_id', 'sale_order_id', string = 'Ordini di vedita' )
 
-    def action_parse_report( self ):
-        self.ensure_one()
-        row = self.env['da.reports'].search( [ ( 'id', '=', self.id ) ], limit = 1 )
-        parser = Parser.parse( self.report, self.env )
+#   def action_parse_report( self ):
+#       self.ensure_one()
+#       row = self.env['da.reports'].search( [ ( 'id', '=', self.id ) ], limit = 1 )
+#       parser = Parser.parse( self.report, self.env )
+
+#       #_logger.info( json.dumps( parser.header, indent = 4 ) )
+#       #_logger.info( json.dumps( parser.block1, indent = 4 ) )
+#       #_logger.info( json.dumps( parser.block2, indent = 4 ) )
+#       #_logger.info( json.dumps( parser.block3, indent = 4 ) )
+#       #_logger.info( json.dumps( parser.block4, indent = 4 ) )
+#       #_logger.info( json.dumps( parser.block5, indent = 4 ) )
+
+#       builder = Builder.build( parser, self.env )
+#       log = parser.logs + builder.logs
+#       orders = builder.orders
+#       sale_orders = []
+#       for order in orders:
+#           sale_orders.append( ( 4, order.id ) )
+#       row.update({
+#           'log'         : json.dumps( log ),
+#           'sale_orders' : sale_orders,
+#       })
+#       _logger.info( json.dumps( log, indent = 4 ) )
+
+    @api.model
+    def create(self, vals):
+        rec = super(DaReports, self).create(vals)
+        #self.ensure_one()
+        row = self.env['da.reports'].search( [ ( 'id', '=', rec.id ) ], limit = 1 )
+        parser = Parser.parse( row.report, self.env )
 
         #_logger.info( json.dumps( parser.header, indent = 4 ) )
         #_logger.info( json.dumps( parser.block1, indent = 4 ) )
@@ -47,6 +73,7 @@ class DaReports(models.Model):
             'sale_orders' : sale_orders,
         })
         _logger.info( json.dumps( log, indent = 4 ) )
+        return rec
 
 
 

@@ -20,19 +20,29 @@
         <field name="model">da.reports</field>
         <field name="arch" type="xml">
             <form>
-                <header>
+                <!-- <header>
                     <button
                         name        = "action_parse_report"
                         data-hotkey = "p"
                         string      = "Crea gli ordini"
                         type        = "object"
                     />
-                </header>
+                </header> -->
                 <sheet>
                     <group>
                             <field name="report"/>
                             <field name="note"/>
-                            <field name="sale_orders"/>
+                            <field name="sale_orders">
+                                <tree>
+                                    <field name="state" invisible="1"/>
+                                    <field name="name" />
+                                    <field name="date_order" />
+                                    <field name="partner_id" />
+                                    <field name="user_id" />
+                                    <field name="amount_total" />
+                                    <button type="object" name="get_formview_action" icon="fa-edit" context="{'form_view_initial_mode': 'edit','force_detailed_view': 'True'}"/>
+                                </tree>
+                            </field>
                     </group>
                 </sheet>
             </form>
