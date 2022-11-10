@@ -10,6 +10,7 @@
                 <field name="file_name"/>
                 <field name="note"/>
                 <field name="status"/>
+                <field name="create_date"/>
             </tree>
         </field>
     </record>
@@ -30,7 +31,7 @@
                 </header> -->
                 <sheet>
                     <group>
-                            <field name="report"/>
+                            <field name="report" filename="file_name"/>
                             <field name="note"/>
                             <field name="sale_orders">
                                 <tree>
@@ -43,6 +44,7 @@
                                     <button type="object" name="get_formview_action" icon="fa-edit" context="{'form_view_initial_mode': 'edit','force_detailed_view': 'True'}"/>
                                 </tree>
                             </field>
+                            <field name="log_text" widget="html" readonly="1"/>
                     </group>
                 </sheet>
             </form>
