@@ -117,3 +117,8 @@
 	path = OCA/account-payment
 	url = git@github.com:OCA/account-payment.git
 	branch = 14.0
+
+[submodule "Coding-Dodo/owl_tutorial_views"]
+	path = Coding-Dodo/owl_tutorial_views
+	url = git@github.com:Coding-Dodo/owl_tutorial_views.git
+	branch = main
