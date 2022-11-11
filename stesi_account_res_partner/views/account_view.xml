@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+
+        <record id="account_analytic_account_form_adres" model="ir.ui.view">
+            <field name="name">account.analytic.account.form.adres</field>
+            <field name="model">account.analytic.account</field>
+            <field name="inherit_id" ref="analytic.view_account_analytic_account_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[@name='main']" position="after">
+                    <group>
+                        <field name="date_start"/>
+                        <field name="date_end"/>
+                        <field name="quix_code"/>
+                        <field name="is_timeoff"/>
+                        <field name="is_mutua"/>
+                        <field name="non_productive"/>
+                    </group>
+                </xpath>
+                <field name="code" position="attributes">
+                    <attribute name="readonly">1</attribute>
+                </field>
+            </field>
+        </record>
+
+        <!--record id="account_supplier_invoice_tree_adres" model="ir.ui.view">
+            <field name="name">account.supplier.invoice.tree.adres</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_tree"/>
+            <field name="arch" type="xml">
+                <field name="date_invoice" position="after">
+                    <field name="date_paid"/>
+                </field>
+                <field name="amount_untaxed_invoice_signed" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="amount_untaxed_invoice_signed" position="after">
+                    <field name="amount_untaxed" sum="Total"/>
+                </field>
+                <field name="amount_tax_signed" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="amount_tax_signed" position="after">
+                    <field name="amount_tax" sum="Total"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="account_invoice_tree_adres" model="ir.ui.view">
+            <field name="name">account.invoice.tree.adres</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_tree"/>
+            <field name="arch" type="xml">
+                <field name="amount_untaxed_invoice_signed" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="amount_untaxed_invoice_signed" position="after">
+                    <field name="amount_untaxed" sum="Total"/>
+                </field>
+                <field name="amount_tax_signed" position="attributes">
+                    <attribute name="invisible">1</attribute>
+                </field>
+                <field name="amount_tax_signed" position="after">
+                    <field name="amount_tax" sum="Total"/>
+                </field>
+            </field>
+        </record>
+
+        <record id="account_supplier_invoice_form_adres" model="ir.ui.view">
+            <field name="name">account.supplier.invoice.form.adres</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_supplier_form"/>
+            <field name="arch" type="xml">
+                <field name="date" position="after">
+                    <field name="date_paid" groups="base.group_on_one"/>
+                    <field name="date_paid_manual" groups="base.group_no_one"/>
+                </field>
+            </field>
+        </record-->
+
+    </data>
+</odoo>
