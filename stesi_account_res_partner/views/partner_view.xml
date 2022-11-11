@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+
+        <record id="partner_form_account_adres" model="ir.ui.view">
+            <field name="name">partner.form.account.adres</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="account.view_partner_property_form"/>
+            <field name="arch" type="xml">
+                <field name="property_account_payable_id" position="after">
+                    <field name="property_account_cost_id"/>
+                    <field name="property_product_cost_id"/>
+                    <field name="property_analytic_cost_id"/>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>
